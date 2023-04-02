@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BreadcrumbModule } from 'angular-crumbs';
 
 
 
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BreadcrumbModule,
   ],
   exports: [
     MaterialModule,
@@ -27,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     ReactiveFormsModule,
     HttpClientModule,
+    BreadcrumbModule,
   ],
 })
 export class SharedModule { }

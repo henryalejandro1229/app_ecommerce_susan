@@ -35,13 +35,15 @@ body {
   color: $pry-yellow !important;
 }
 .container-image img {
-	height: 300px;
-    width: 100%;
-	object-fit: scale-down;
+  height: 300px;
+  width: 100%;
+  object-fit: scale-down;
+}
+.nav-link:hover {
+  color: $pry-yellow !important;
 }
 
-
-// MAT TABLE STYLES 
+// MAT TABLE STYLES
 
 table {
   width: 100%;
@@ -92,7 +94,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
-// MODALS STYLES 
+// MODALS STYLES
 
 .modal-header {
   background: #fff;
@@ -141,4 +143,31 @@ tr.example-element-row:not(.example-expanded-row):active {
     min-width: 300px;
     height: 41px;
   }
+}
+
+// BREADCRUMS
+
+.breadcrumb-app {
+  display: inline-block;
+}
+.breadcrumb-app:first-child:before {
+  display: none;
+}
+.breadcrumb-app:before {
+  content: "|";
+  margin: 0 10px 0 8px;
+}
+.breadcrumb-item {
+  padding: 0 8px;
+  font-weight: 300;
+}
+.breadcrumb-item.active {
+  font-weight: 500;
+}
+.breadcrumb-link {
+  text-decoration: none;
+  color: $pry-black;
+}
+.breadcrumb-link:hover {
+  color: $pry-yellow;
 }

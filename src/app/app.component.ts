@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app_ecommerce_susan';
+  title = 'Licor de sabor Pura Caña';
 }

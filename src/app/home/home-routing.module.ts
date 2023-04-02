@@ -15,6 +15,7 @@ const routes: Routes = [
       },
       {
         path: 'login',
+        data: { breadcrumb: 'login'},
         component: LoginComponent,
       },
     ],
