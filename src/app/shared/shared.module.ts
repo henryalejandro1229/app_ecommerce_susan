@@ -34,6 +34,8 @@ import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
     ReactiveFormsModule,
     HttpClientModule,
     BreadcrumbModule,
+    CarruselComponent,
+    PageNoFoundComponent,
   ],
 })
 export class SharedModule { }
