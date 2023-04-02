@@ -6,6 +6,8 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BreadcrumbModule } from 'angular-crumbs';
+import { CarruselComponent } from './carrusel/carrusel.component';
+import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
 
 
 
@@ -13,6 +15,8 @@ import { BreadcrumbModule } from 'angular-crumbs';
   declarations: [
     NavbarComponent,
     FooterComponent,
+    CarruselComponent,
+    PageNoFoundComponent,
   ],
   imports: [
     CommonModule,
