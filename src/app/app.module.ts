@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {BreadcrumbModule} from 'angular-crumbs';
+import { AdminModule } from './admin/admin.module';
+import { HomeModule } from './home/home.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import {BreadcrumbModule} from 'angular-crumbs';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    AdminModule,
+    HomeModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
