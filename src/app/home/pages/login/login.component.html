@@ -12,15 +12,23 @@
                                 Ingresa tu usuario y contraseña para continuar!
                             </p>
                             <form [formGroup]="form">
-                                <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="typeEmailX">Correo electrónico</label>
-                                    <input type="email" class="form-control"
-                                        placeholder="Ingrese su correo electrónico" />
+                                <div class="form-outline form-white mb-2">
+                                    <mat-form-field appearance="outline" color="accent" class="form-full">
+                                        <mat-label>Correo electrónico</mat-label>
+                                        <input matInput formControlName="email"
+                                            placeholder="Ingrese su correo electrónico" type="email" />
+                                    </mat-form-field>
                                 </div>
-                                <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="typePasswordX">Contraseña</label>
-                                    <input type="password" class="form-control form-control"
-                                        placeholder="Ingrese su contraseña" />
+                                <div class="form-outline form-white mb-2">
+                                    <mat-form-field appearance="outline" color="accent" class="form-full">
+                                        <mat-label>Contraseña</mat-label>
+                                        <input matInput #pass matInput [type]="clear ? 'text' : 'password'"
+                                            formControlName="password" placeholder="Ingrese su contraseña" />
+                                        <mat-icon (click)="clear = !clear" matSuffix
+                                            color="accent">
+                                            {{ clear ? "visibility" : "visibility_off" }}
+                                        </mat-icon>
+                                    </mat-form-field>
                                 </div>
                             </form>
                             <p class="small mb-5 pb-lg-2">
