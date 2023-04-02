@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url: `saborlicor_app_backend/api`,
+  urlImg: `http://localhost/saborlicor_app_backend/api/products/imageProducts/`,
+  // urlEmail: `https://app-los-pajaritos-server-email-production.up.railway.app/bordados_app_backend`,
 };
 
 /*

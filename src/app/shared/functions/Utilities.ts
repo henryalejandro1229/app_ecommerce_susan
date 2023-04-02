@@ -1,6 +1,6 @@
 import swal from 'sweetalert2';
 
-export function showNotifySuccess(title: string, message: string) {
+export function showNotifySuccess(title: string) {
   return swal.fire({
     // position: 'bottom-right',
     // timer: 2500,
@@ -21,7 +21,7 @@ export function showNotifySuccess(title: string, message: string) {
   });
 }
 
-export function showNotifyWarning(title: string, message: string) {
+export function showNotifyWarning(title: string) {
   return swal.fire({
     position: 'top-end',
     icon: 'warning',
@@ -31,7 +31,7 @@ export function showNotifyWarning(title: string, message: string) {
   });
 }
 
-export function showNotifyError(title: string, message: string) {
+export function showNotifyError(title: string) {
   return swal.fire({
     position: 'top-end',
     icon: 'error',
