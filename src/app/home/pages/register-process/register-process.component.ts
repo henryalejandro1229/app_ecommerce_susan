@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-process',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterProcessComponent implements OnInit {
 
-  constructor() { }
+  form!: FormGroup;
+  clear: boolean = false;
 
-  ngOnInit(): void {
+  constructor() {
+    this.form = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+    });
+  }
+
+  ngOnInit(): void {}
+
+  registrarme() {
+
   }
 
 }
