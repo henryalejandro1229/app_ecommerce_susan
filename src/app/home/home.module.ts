@@ -5,6 +5,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
+import { SingUpComponent } from './pages/sing-up/sing-up.component';
+import { ForgotPwdComponent } from './pages/forgot-pwd/forgot-pwd.component';
+import { RegisterProcessComponent } from './pages/register-process/register-process.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 
 
@@ -12,7 +16,11 @@ import { HomeRoutingModule } from './home-routing.module';
   declarations: [
     HomeComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    SingUpComponent,
+    ForgotPwdComponent,
+    RegisterProcessComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
