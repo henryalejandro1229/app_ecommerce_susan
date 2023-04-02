@@ -48,6 +48,20 @@
                     INICIO
                 </button>
                 <li class="nav-item mx-2">
+                    <button class="nav-link" mat-button [matMenuTriggerFor]="matMenuMujer">
+                        MARCAS
+                        <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+                    </button>
+                    <mat-menu #matMenuMujer="matMenu">
+                        <button mat-menu-item><mat-icon>radio_button_unchecked</mat-icon> EJ</button>
+                    </mat-menu>
+                </li>
+                <li class="nav-item mx-2">
+                    <button class="nav-link" mat-button (click)="routerLink('/pedidos')">
+                        MIS COMPRAS
+                    </button>
+                </li>
+                <li class="nav-item mx-2">
                     <button class="nav-link" mat-button [matMenuTriggerFor]="matMenuAbout">
                         ACERCA DE NOSOTROS
                         <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
@@ -58,29 +72,6 @@
                         <button mat-menu-item (click)="routerLink('/preguntas-frecuentes')">PREGUNTAS
                             FRECUENTES</button>
                     </mat-menu>
-                </li>
-                <li class="nav-item mx-2">
-                    <button class="nav-link" mat-button [matMenuTriggerFor]="matMenuMujer">
-                        MUJER
-                        <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
-                    </button>
-                    <mat-menu #matMenuMujer="matMenu">
-                        <button mat-menu-item>EJ</button>
-                    </mat-menu>
-                </li>
-                <li class="nav-item mx-2">
-                    <button class="nav-link" mat-button [matMenuTriggerFor]="matMenuHombre">
-                        HOMBRE
-                        <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
-                    </button>
-                    <mat-menu #matMenuHombre="matMenu">
-                        <button mat-menu-item>EJ</button>
-                    </mat-menu>
-                </li>
-                <li class="nav-item mx-2">
-                    <button class="nav-link" mat-button (click)="routerLink('/pedidos')">
-                        PEDIDOS
-                    </button>
                 </li>
             </ul>
             <div class="d-flex align-items-center">
