@@ -1,59 +1,57 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-    <!-- Container wrapper -->
     <div class="container-fluid">
-        <!-- Toggle button -->
         <button class="navbar-toggler" [matMenuTriggerFor]="matPryMenuPublic" type="button" data-mdb-toggle="collapse"
             data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #matPryMenuPublic="matMenu">
-            <!-- <div *ngIf="isAuth && !isAdmin || !isAuth">
-          <button class="nav-link" mat-menu-item (click)="routerLink('/home')">
-            INICIO
-          </button>
-          <button mat-menu-item class="nav-link" [matMenuTriggerFor]="matMenuAboutResp">
-            ACERCA DE NOSOTROS
-          </button>
-          <mat-menu #matMenuAboutResp="matMenu">
-            <button mat-menu-item (click)="routerLink('/aviso-privacidad')">AVISO DE PRIVACIDAD</button>
-            <button mat-menu-item (click)="routerLink('/mision-vision')">MISIÓN Y VISIÓN</button>
-            <button mat-menu-item (click)="routerLink('/preguntas-frecuentes')">PREGUNTAS FRECUENTES</button>
-          </mat-menu>
-          <button class="nav-link" mat-menu-item [matMenuTriggerFor]="matMenuMujerResp">
-            MUJER
-          </button>
-          <mat-menu #matMenuMujerResp="matMenu">
-            <button *ngFor="let catWoman of categoriesWoman" (click)="verCategoria(catWoman)" mat-menu-item>{{catWoman.name}}</button>
-          </mat-menu>
-          <button class="nav-link" mat-menu-item [matMenuTriggerFor]="matMenuHombreResp">
-            HOMBRE
-          </button>
-          <mat-menu #matMenuHombreResp="matMenu">
-            <button *ngFor="let catMan of categoriesMan" (click)="verCategoria(catMan)" mat-menu-item>{{catMan.name}}</button>
-          </mat-menu>
-          <button class="nav-link" mat-menu-item (click)="routerLink('/pedidos')">
-            PEDIDOS
-          </button>
-        </div> -->
+            <div>
+                <button class="nav-link text-white" mat-menu-item (click)="routerLink('/home')">
+                    INICIO
+                </button>
+
+                <button mat-menu-item class="nav-link text-white" [matMenuTriggerFor]="matMenuLicoresResp">
+                    LICORES
+                </button>
+                <mat-menu #matMenuLicoresResp="matMenu">
+                    <button mat-menu-item *ngFor="let marca of objTipos"
+                        (click)="verMarca(marca)" class="text-white"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}
+                    </button>
+                </mat-menu>
+                <button class="nav-link text-white" mat-menu-item (click)="routerLink('/home/mis-compras')">
+                    MIS COMPRAS
+                </button>
+                <button mat-menu-item class="nav-link text-white" [matMenuTriggerFor]="matMenuAboutResp">
+                    ACERCA DE NOSOTROS
+                </button>
+                <mat-menu #matMenuAboutResp="matMenu">
+                    <button class="text-white" mat-menu-item (click)="routerLink('/aviso-privacidad')">AVISO DE PRIVACIDAD</button>
+                    <button mat-menu-item (click)="routerLink('/mision-vision')">MISIÓN Y VISIÓN</button>
+                    <button mat-menu-item (click)="routerLink('/preguntas-frecuentes')">PREGUNTAS FRECUENTES</button>
+                </mat-menu>
+                <button class="nav-link text-white" mat-menu-item (click)="routerLink('/pedidos')">
+                    PEDIDOS
+                </button>
+            </div>
         </mat-menu>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <a routerLink="[/home]" class="navbar-brand mt-2 mt-lg-0">
                 <img src="../../../assets/resources/logo.png" height="60" loading="lazy" />
-                <!-- <mat-icon>home</mat-icon> -->
             </a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <button class="nav-link" mat-button (click)="routerLink('/home')">
                     INICIO
                 </button>
                 <li class="nav-item mx-2">
-                    <button class="nav-link" mat-button [matMenuTriggerFor]="matMenuMujer">
-                        MARCAS
+                    <button class="nav-link" mat-button [matMenuTriggerFor]="matMenuLicores">
+                        LICORES
                         <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
                     </button>
-                    <mat-menu #matMenuMujer="matMenu">
-                        <button mat-menu-item *ngFor="let marca of objTipos" (click)="verMarca(marca)"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}</button>
+                    <mat-menu #matMenuLicores="matMenu">
+                        <button mat-menu-item *ngFor="let marca of objTipos"
+                            (click)="verMarca(marca)"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}</button>
                     </mat-menu>
                 </li>
                 <li class="nav-item mx-2">
@@ -69,20 +67,21 @@
                     <mat-menu #matMenuAbout="matMenu">
                         <button mat-menu-item (click)="routerLink('/aviso-privacidad')">AVISO DE PRIVACIDAD</button>
                         <button mat-menu-item (click)="routerLink('/mision-vision')">MISIÓN Y VISIÓN</button>
-                        <button mat-menu-item (click)="routerLink('/preguntas-frecuentes')">PREGUNTAS
-                            FRECUENTES</button>
+                        <button mat-menu-item (click)="routerLink('/preguntas-frecuentes')">
+                            PREGUNTAS FRECUENTES
+                        </button>
                     </mat-menu>
                 </li>
             </ul>
             <div class="d-flex align-items-center">
-                <button (click)="routerLink('/home/login')" *ngIf="!_auth.isAuth" class="shadow k-btn-pry-yellow" mat-button><mat-icon
-                        matSuffix>login</mat-icon>
+                <button (click)="routerLink('/home/login')" *ngIf="!_auth.isAuth" class="shadow k-btn-pry-yellow"
+                    mat-button><mat-icon matSuffix>login</mat-icon>
                     INGRESAR
                 </button>
                 <div class="dropdown" *ngIf="_auth.isAuth">
                     <a class="d-flex align-items-center" aria-expanded="false">
-                        <img src="../../../assets/resources/perfilimagen.png" class="rounded-circle shadow" height="35" width="35" loading="lazy"
-                            [matMenuTriggerFor]="matMenuPerfil" />
+                        <img src="../../../assets/resources/perfilimagen.png" class="rounded-circle shadow" height="35"
+                            width="35" loading="lazy" [matMenuTriggerFor]="matMenuPerfil" />
                     </a>
                     <mat-menu #matMenuPerfil="matMenu">
                         <button mat-menu-item><mat-icon>account_circle</mat-icon> Mi perfil</button>
@@ -90,17 +89,6 @@
                     </mat-menu>
                 </div>
             </div>
-            <!-- <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-link px-3 me-2">
-                    Login
-                </button>
-                <button type="button" class="btn btn-primary me-3 shadow">
-                    Sign up for free
-                </button>
-                <a class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div> -->
         </div>
     </div>
 </nav>
