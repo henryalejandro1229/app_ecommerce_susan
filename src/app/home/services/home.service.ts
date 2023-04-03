@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { BrandModelo, ClienteModelo, ImagenModelo, ProductoModelo } from '../models/home.modelo';
+import { TypeModelo, ClienteModelo, ImagenModelo, ProductoModelo } from '../models/home.modelo';
 
 @Injectable({
   providedIn: 'root',
@@ -91,34 +91,34 @@ export class HomeService {
   //   return this.http.post(url, body);
   // }
 
-  getBrands(): Observable<any> {
-    return this.http.get(`${environment.url}/products/getBrands.php`);
+  getTypes(): Observable<any> {
+    return this.http.get(`${environment.url}/products/getTypes.php`);
   }
 
-  createBrand(formData: BrandModelo, imageUrl: string): Observable<any> {
+  createType(formData: TypeModelo, imageUrl: string): Observable<any> {
     let params = new HttpParams()
       .append('name', formData.name)
       .append('description', formData.description)
       .append('imageUrl', imageUrl);
-    return this.http.get(`${environment.url}/products/createBrand.php`, {
+    return this.http.get(`${environment.url}/products/createType.php`, {
       params,
     });
   }
 
-  updateBrand(id: string, formData: BrandModelo, imageUrl: string): Observable<any> {
+  updateType(id: string, formData: TypeModelo, imageUrl: string): Observable<any> {
     let params = new HttpParams()
       .append('id', id)
       .append('name', formData.name)
       .append('description', formData.description)
       .append('imageUrl', imageUrl);
-    return this.http.get(`${environment.url}/products/updateBrand.php`, {
+    return this.http.get(`${environment.url}/products/updateType.php`, {
       params,
     });
   }
 
-  deleteBrand(id: string): Observable<any> {
+  deleteType(id: string): Observable<any> {
     return this.http.get(
-      `${environment.url}/products/deleteBrand.php?id=${id}`
+      `${environment.url}/products/deleteType.php?id=${id}`
     );
   }
 
@@ -130,7 +130,7 @@ export class HomeService {
     let params = new HttpParams()
     .append('title', formData.title)
     .append('description', formData.description)
-    .append('BrandID', formData.brandID)
+    .append('typeID', formData.typeID)
     .append('precio', formData.precio)
     .append('imageUrl', imageUrl);
     return this.http.get(`${environment.url}/products/createProduct.php`, {
@@ -143,7 +143,7 @@ export class HomeService {
       .append('id', id)
       .append('title', formData.title)
       .append('description', formData.description)
-      .append('BrandID', formData.brandID)
+      .append('typeID', formData.typeID)
       .append('precio', formData.precio)
       .append('imageUrl', imageUrl);
     return this.http.get(`${environment.url}/products/updateProduct.php`, {
@@ -157,15 +157,15 @@ export class HomeService {
     );
   }
 
-  getProductsPerBrand(Brand: string): Observable<any> {
+  getProductsPerType(Type: string): Observable<any> {
     return this.http.get(
-      `${environment.url}/products/getProductsPerBrand.php?id=${Brand}`
+      `${environment.url}/products/getProductsPerType.php?id=${Type}`
     );
   }
 
-  getBrand(id: string): Observable<any> {
+  getType(id: string): Observable<any> {
     return this.http.get(
-      `${environment.url}/products/getBrand.php?id=${id}`
+      `${environment.url}/products/getType.php?id=${id}`
     );
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BrandModelo, ProductoModelo } from 'src/app/home/models/home.modelo';
+import { TypeModelo, ProductoModelo } from 'src/app/home/models/home.modelo';
 import { AuthService } from '../services/auth.service';
 import { showModalConfirmation, showNotifyError, showNotifySuccess } from '../functions/Utilities';
 import { HomeService } from 'src/app/home/services/home.service';
@@ -12,9 +12,7 @@ import { HomeService } from 'src/app/home/services/home.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  isAuth = false;
-  isAdmin = false;
-  objMarcas!: BrandModelo[];
+  objMarcas!: TypeModelo[];
 
   constructor(
     private router: Router,
@@ -44,7 +42,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getBrands() {
-    this._hs.getBrands().subscribe(
+    this._hs.getTypes().subscribe(
       (res) => {
         this.objMarcas = res;
       },
@@ -54,7 +52,7 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  verMarca(brand: BrandModelo) {
+  verMarca(brand: TypeModelo) {
     this.router.navigate(['/home/list-product', brand._id.$oid]);
   }
 }

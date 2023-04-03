@@ -6,7 +6,7 @@ export interface ClienteModelo {
   isAdmin: boolean;
 }
 
-export interface BrandModelo {
+export interface TypeModelo {
   _id: any;
   name: string;
   description: string;
@@ -15,7 +15,7 @@ export interface BrandModelo {
 
 export interface ProductoModelo {
   _id: any;
-  brandID: string;
+  typeID: string;
   title: string;
   description: string;
   imageUrl: string;
