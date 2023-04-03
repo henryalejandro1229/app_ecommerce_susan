@@ -7,6 +7,8 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { ForgotPwdComponent } from './pages/forgot-pwd/forgot-pwd.component';
 import { RegisterProcessComponent } from './pages/register-process/register-process.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ListProductsComponent } from './pages/list-products/list-products.component';
+import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,16 @@ const routes: Routes = [
         path: 'reset-password',
         data: { breadcrumb: 'Actualizar contraseña' },
         component: ResetPasswordComponent,
+      },
+      {
+        path: 'list-product/:id',
+        data: { breadcrumb: 'Productos de categoría' },
+        component: ListProductsComponent,
+      },
+      {
+        path: 'mis-compras',
+        data: { breadcrumb: 'Mis compras' },
+        component: MisComprasComponent,
       },
     ],
   },

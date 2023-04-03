@@ -54,7 +54,7 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  verMarca(category: BrandModelo) {
-    this.router.navigate(['/home/brand', category._id.$oid]);
+  verMarca(brand: BrandModelo) {
+    this.router.navigate(['/home/list-product', brand._id.$oid]);
   }
 }

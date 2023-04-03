@@ -9,6 +9,9 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { ForgotPwdComponent } from './pages/forgot-pwd/forgot-pwd.component';
 import { RegisterProcessComponent } from './pages/register-process/register-process.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { BrandsComponent } from './pages/brands/brands.component';
+import { ListProductsComponent } from './pages/list-products/list-products.component';
+import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 
 
 
@@ -20,7 +23,10 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     SingUpComponent,
     ForgotPwdComponent,
     RegisterProcessComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    BrandsComponent,
+    ListProductsComponent,
+    MisComprasComponent
   ],
   imports: [
     CommonModule,

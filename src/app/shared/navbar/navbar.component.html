@@ -53,11 +53,11 @@
                         <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
                     </button>
                     <mat-menu #matMenuMujer="matMenu">
-                        <button mat-menu-item><mat-icon>radio_button_unchecked</mat-icon> EJ</button>
+                        <button mat-menu-item *ngFor="let marca of objMarcas" (click)="verMarca(marca)"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}</button>
                     </mat-menu>
                 </li>
                 <li class="nav-item mx-2">
-                    <button class="nav-link" mat-button (click)="routerLink('/pedidos')">
+                    <button class="nav-link" mat-button (click)="routerLink('/home/mis-compras')">
                         MIS COMPRAS
                     </button>
                 </li>
