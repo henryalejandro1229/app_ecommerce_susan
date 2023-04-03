@@ -12,7 +12,7 @@ import { HomeService } from 'src/app/home/services/home.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  objMarcas!: TypeModelo[];
+  objTipos!: TypeModelo[];
 
   constructor(
     private router: Router,
@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getBrands();
+    this.getTypes();
   }
 
   public routerLink(path: string): void {
@@ -41,10 +41,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  getBrands() {
+  getTypes() {
     this._hs.getTypes().subscribe(
       (res) => {
-        this.objMarcas = res;
+        this.objTipos = res;
       },
       (e) => {
         showNotifyError('Error al consultar');

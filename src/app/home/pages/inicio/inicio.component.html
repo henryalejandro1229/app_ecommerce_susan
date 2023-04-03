@@ -1,24 +1,41 @@
 <app-carrusel></app-carrusel>
 <div class="container">
-    <div class="py-4">
-      <p class="h5 col-md-12 text-right fw-bold py-2">
-        Productos destacados
-        <button type="button" class="mx-4 btn btn-link">Ver más productos...</button>
-      </p>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-4">
-        <div class="col" *ngFor="let prod of objProducts">
-          <div class="card h-100 hover-shadow">
-            <div class="container-image border-bottom">
-              <!-- <img src="{{urlImage}}/{{catWoman.imageUrl}}"> -->
-              <mat-icon>task</mat-icon>
-            </div>
-            <div class="card-body">
-                <p class="h5 text-center fw-bold txt-yellow">${{prod.precio}}</p>
-                <p class="h6 text-center fw-light text-truncate"><b>Brandi</b> - {{prod.description}}</p>
-            </div>
+  <div class="pt-4">
+    <p class="h5 col-md-12 text-right fw-bold py-2">
+      Conoce nuestra variedad de licores
+    </p>
+    <div class="row row-cols-1 row-cols-md-6 row-cols-sm-3 g-4 pb-4">
+      <div class="col" *ngFor="let tipo of objTipos">
+        <div class="card h-100 hover-shadow">
+          <div class="container-image border-bottom">
+            <mat-icon>task</mat-icon>
+          </div>
+          <div class="card-body">
+            <p class="h6 text-center fw-light text-truncate"><b>{{tipo.name}}</b></p>
           </div>
         </div>
       </div>
     </div>
   </div>
   <mat-divider></mat-divider>
+  <div class="py-4">
+    <p class="h5 col-md-12 text-right fw-bold py-2">
+      Productos destacados
+      <button type="button" class="mx-4 btn btn-link">Ver más productos...</button>
+    </p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-4">
+      <div class="col" *ngFor="let prod of objProducts">
+        <div class="card h-100 hover-shadow">
+          <div class="container-image border-bottom">
+            <mat-icon>task</mat-icon>
+          </div>
+          <div class="card-body">
+            <p class="h5 text-center fw-bold txt-yellow">${{prod.precio}}</p>
+            <p class="h6 text-center fw-light text-truncate"><b>Brandi</b> - {{prod.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>
