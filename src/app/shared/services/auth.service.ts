@@ -1,45 +1,31 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  public isAuth = false;
+  public isAdmin = false;
 
-  constructor() { }
+  constructor() {}
 
   getTokenLocalStorage() {
     return localStorage.getItem('token') ? localStorage.getItem('token') : '';
   }
 
   setTokenLocalStorage(token: string) {
+    this.isAuth = true;
     return localStorage.setItem('token', token);
   }
 
   setIsAdminLS(value: string) {
+    this.isAdmin = value === 'true' ? true : false;
     return localStorage.setItem('isAdmin', value);
   }
 
-  getIsAdminLS() {
-    return localStorage.getItem('isAdmin');
-  }
-
-  isAuth(): boolean {
-    let token = this.getTokenLocalStorage();
-    if (token && token?.length > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  isAdmin(): boolean {
-    let isAdmin = this.getIsAdminLS();
-    if (isAdmin && isAdmin === 'true') {
-      return true;
-    }
-    return false;
-  }
-
   logout() {
+    this.isAuth = false;
+    this.isAdmin = false;
     return localStorage.removeItem('token');
   }
 }

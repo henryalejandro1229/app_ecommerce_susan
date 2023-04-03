@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { ClienteModelo } from '../models/home.modelo';
+import { BrandModelo, ClienteModelo, ImagenModelo, ProductoModelo } from '../models/home.modelo';
 
 @Injectable({
   providedIn: 'root',
@@ -90,4 +90,86 @@ export class HomeService {
   //   const url = `${environment.urlEmail}/send-forgot-password`;
   //   return this.http.post(url, body);
   // }
+
+  getBrands(): Observable<any> {
+    return this.http.get(`${environment.url}/products/getBrands.php`);
+  }
+
+  createBrand(formData: BrandModelo, imageUrl: string): Observable<any> {
+    let params = new HttpParams()
+      .append('name', formData.name)
+      .append('description', formData.description)
+      .append('imageUrl', imageUrl);
+    return this.http.get(`${environment.url}/products/createBrand.php`, {
+      params,
+    });
+  }
+
+  updateBrand(id: string, formData: BrandModelo, imageUrl: string): Observable<any> {
+    let params = new HttpParams()
+      .append('id', id)
+      .append('name', formData.name)
+      .append('description', formData.description)
+      .append('imageUrl', imageUrl);
+    return this.http.get(`${environment.url}/products/updateBrand.php`, {
+      params,
+    });
+  }
+
+  deleteBrand(id: string): Observable<any> {
+    return this.http.get(
+      `${environment.url}/products/deleteBrand.php?id=${id}`
+    );
+  }
+
+  getProducts(): Observable<any> {
+    return this.http.get(`${environment.url}/products/getProducts.php`);
+  }
+
+  createProduct(formData: ProductoModelo, imageUrl: string): Observable<any> {
+    let params = new HttpParams()
+    .append('title', formData.title)
+    .append('description', formData.description)
+    .append('BrandID', formData.brandID)
+    .append('precio', formData.precio)
+    .append('imageUrl', imageUrl);
+    return this.http.get(`${environment.url}/products/createProduct.php`, {
+      params,
+    });
+  }
+
+  updateProduct(id: string, formData: ProductoModelo, imageUrl: string): Observable<any> {
+    let params = new HttpParams()
+      .append('id', id)
+      .append('title', formData.title)
+      .append('description', formData.description)
+      .append('BrandID', formData.brandID)
+      .append('precio', formData.precio)
+      .append('imageUrl', imageUrl);
+    return this.http.get(`${environment.url}/products/updateProduct.php`, {
+      params,
+    });
+  }
+  
+  deleteProduct(id: string): Observable<any> {
+    return this.http.get(
+      `${environment.url}/products/deleteProduct.php?id=${id}`
+    );
+  }
+
+  getProductsPerBrand(Brand: string): Observable<any> {
+    return this.http.get(
+      `${environment.url}/products/getProductsPerBrand.php?id=${Brand}`
+    );
+  }
+
+  getBrand(id: string): Observable<any> {
+    return this.http.get(
+      `${environment.url}/products/getBrand.php?id=${id}`
+    );
+  }
+
+  uploadFile(archivo: ImagenModelo) {
+    return this.http.post(`${environment.url}/products/uploadImage.php`, archivo);
+  }
 }
