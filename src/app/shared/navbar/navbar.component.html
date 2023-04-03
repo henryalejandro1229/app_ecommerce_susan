@@ -16,8 +16,8 @@
                     LICORES
                 </button>
                 <mat-menu #matMenuLicoresResp="matMenu">
-                    <button mat-menu-item *ngFor="let marca of objTipos"
-                        (click)="verMarca(marca)" class="text-white"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}
+                    <button mat-menu-item *ngFor="let marca of objTipos" (click)="verMarca(marca)"
+                        class="text-white"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}
                     </button>
                 </mat-menu>
                 <button class="nav-link text-white" mat-menu-item (click)="routerLink('/home/mis-compras')">
@@ -27,7 +27,8 @@
                     ACERCA DE NOSOTROS
                 </button>
                 <mat-menu #matMenuAboutResp="matMenu">
-                    <button class="text-white" mat-menu-item (click)="routerLink('/aviso-privacidad')">AVISO DE PRIVACIDAD</button>
+                    <button class="text-white" mat-menu-item (click)="routerLink('/aviso-privacidad')">AVISO DE
+                        PRIVACIDAD</button>
                     <button mat-menu-item (click)="routerLink('/mision-vision')">MISIÓN Y VISIÓN</button>
                     <button mat-menu-item (click)="routerLink('/preguntas-frecuentes')">PREGUNTAS FRECUENTES</button>
                 </mat-menu>
@@ -72,6 +73,12 @@
                         </button>
                     </mat-menu>
                 </li>
+
+                <form class="d-none d-md-flex input-group w-auto my-auto">
+                    <input autocomplete="off" type="search" class="form-control"
+                        placeholder='Buscar producto' style="min-width: 225px;" />
+                    <span class="input-group-text border-0"><mat-icon>search</mat-icon></span>
+                </form>
             </ul>
             <div class="d-flex align-items-center">
                 <button (click)="routerLink('/home/login')" *ngIf="!_auth.isAuth" class="shadow k-btn-pry-yellow"

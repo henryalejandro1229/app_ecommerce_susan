@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BreadcrumbModule } from 'angular-crumbs';
 import { CarruselComponent } from './carrusel/carrusel.component';
 import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
+import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 
 
 
@@ -17,6 +18,7 @@ import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
     FooterComponent,
     CarruselComponent,
     PageNoFoundComponent,
+    NavbarAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
     BreadcrumbModule,
     CarruselComponent,
     PageNoFoundComponent,
+    NavbarAdminComponent,
   ],
 })
 export class SharedModule { }
