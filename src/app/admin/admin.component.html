@@ -1,7 +1,11 @@
-<breadcrumb #parent>
-    <div class="breadcrumb d-flex flex-row" *ngFor="let route of parent.breadcrumbs">
-        <a mat-button *ngIf="!route.terminal" [routerLink]="[route.url]">{{ route.displayName }}</a>
-        <a mat-button *ngIf="route.terminal">{{ route.displayName }}</a>
-    </div>
-</breadcrumb>
+<app-navbar></app-navbar>
+<div class="container py-2">
+    <breadcrumb #parent>
+        <span class="breadcrumb-app" *ngFor="let route of parent.breadcrumbs">
+            <span class="breadcrumb-item">
+                <a [routerLink]="[route.url]" class="breadcrumb-link">{{ route.displayName }}</a>
+            </span>
+        </span>
+    </breadcrumb>
+</div>
 <router-outlet></router-outlet>

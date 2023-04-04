@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+<nav class="navbar navbar-expand-lg shadow-sm" [ngClass]="{'bg-light': !_auth.isAdmin, 'bg-yellow': _auth.isAdmin}">
     <div class="container-fluid">
         <button class="navbar-toggler" [matMenuTriggerFor]="matPryMenuPublic" type="button" data-mdb-toggle="collapse"
             data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -41,7 +41,7 @@
             <a routerLink="[/home]" class="navbar-brand mt-2 mt-lg-0">
                 <img src="../../../assets/resources/logo.png" height="60" loading="lazy" />
             </a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!_auth.isAdmin">
                 <button class="nav-link" mat-button (click)="routerLink('/home')">
                     INICIO
                 </button>
@@ -74,11 +74,25 @@
                     </mat-menu>
                 </li>
 
-                <form class="d-none d-md-flex input-group w-auto my-auto">
+                <form class="d-none d-md-flex input-group w-auto my-auto" *ngIf="!_auth.isAdmin">
                     <input autocomplete="off" type="search" class="form-control"
                         placeholder='Buscar producto' style="min-width: 225px;" />
                     <span class="input-group-text border-0"><mat-icon>search</mat-icon></span>
                 </form>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="_auth.isAdmin">
+                <button class="text-white" mat-button (click)="routerLink('/admin')">
+                    DASHBOARD
+                </button>
+                <button class="text-white" mat-button (click)="routerLink('/admin/clientes')">
+                    CLIENTES
+                </button>
+                <button class="text-white" mat-button (click)="routerLink('/home/productos')">
+                    PRODUCTOS
+                </button>
+                <button class="text-white" mat-button (click)="routerLink('/home/types')">
+                    TIPOS DE LICOR
+                </button>
             </ul>
             <div class="d-flex align-items-center">
                 <button (click)="routerLink('/home/login')" *ngIf="!_auth.isAuth" class="shadow k-btn-pry-yellow"
