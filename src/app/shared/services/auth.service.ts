@@ -7,10 +7,16 @@ export class AuthService {
   public isAuth = false;
   public isAdmin = false;
 
-  constructor() {}
+  constructor() {
+    this.getSesion();
+  }
 
   getTokenLocalStorage() {
     return localStorage.getItem('token') ? localStorage.getItem('token') : '';
+  }
+
+  getIsAdminLocalStorage() {
+    return localStorage.getItem('isAdmin') ? localStorage.getItem('isAdmin') : '';
   }
 
   setTokenLocalStorage(token: string) {
@@ -27,5 +33,11 @@ export class AuthService {
     this.isAuth = false;
     this.isAdmin = false;
     return localStorage.removeItem('token');
+  }
+
+  getSesion() {
+    let token = this.getTokenLocalStorage();
+    this.isAuth = token? token.length > 0 : false;
+    this.isAdmin = this.getIsAdminLocalStorage() === 'true';
   }
 }
