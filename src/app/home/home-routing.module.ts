@@ -9,6 +9,9 @@ import { RegisterProcessComponent } from './pages/register-process/register-proc
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ListProductsComponent } from './pages/list-products/list-products.component';
 import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
+import { MisionVisionComponent } from './pages/mision-vision/mision-vision.component';
+import { AvisoPrivacidadComponent } from './pages/aviso-privacidad/aviso-privacidad.component';
+import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const routes: Routes = [
   {
@@ -53,6 +56,21 @@ const routes: Routes = [
         path: 'mis-compras',
         data: { breadcrumb: 'Mis compras' },
         component: MisComprasComponent,
+      },
+      {
+        path: 'mision-vision',
+        data: { breadcrumb: 'Misión y visión' },
+        component: MisionVisionComponent,
+      },
+      {
+        path: 'aviso-privacidad',
+        data: { breadcrumb: 'Aviso de privacidad' },
+        component: AvisoPrivacidadComponent,
+      },
+      {
+        path: 'preguntas-frecuentes',
+        data: { breadcrumb: 'Preguntas frecuentes' },
+        component: PreguntasFrecuentesComponent,
       },
     ],
   },

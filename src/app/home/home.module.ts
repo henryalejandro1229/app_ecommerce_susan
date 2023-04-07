@@ -12,6 +12,8 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { BrandsComponent } from './pages/brands/brands.component';
 import { ListProductsComponent } from './pages/list-products/list-products.component';
 import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
+import { AvisoPrivacidadComponent } from './pages/aviso-privacidad/aviso-privacidad.component';
+import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 
 
 
@@ -26,7 +28,9 @@ import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
     ResetPasswordComponent,
     BrandsComponent,
     ListProductsComponent,
-    MisComprasComponent
+    MisComprasComponent,
+    AvisoPrivacidadComponent,
+    PreguntasFrecuentesComponent
   ],
   imports: [
     CommonModule,
