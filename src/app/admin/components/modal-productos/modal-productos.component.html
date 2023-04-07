@@ -1,1 +1,65 @@
-<p>modal-productos works!</p>
+<main>
+    <header class="modal-header">
+        <div class="modal-title">
+            {{data.isNew ? 'Nuevo': 'Editar'}} producto
+        </div>
+
+        <button mat-icon-button mat-dialog-close tabindex="-1">
+            <mat-icon class="close-icon btn-close-modal">close</mat-icon>
+        </button>
+    </header>
+
+    <section class="modal-body">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-xs-12 mb-4" color="accent" appearance="outline">
+                            <!-- <label for="formFile" class="form-label">Imagen del producto</label> -->
+                            <div class="col-xs-12 d-flex justify-content-center mb-3 container-image">
+                                <img *ngIf="data.isNew" src="../../../../assets/resources/newProduct.jpg" #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
+                                <img *ngIf="!data.isNew" src="{{urlImage}}/{{imageName}}" #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
+                            </div>
+                            <input class="form-control" type="file" accept="image/*" (change)="seleccionarImagen($event)">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <mat-form-field class="col-xs-12" color="accent" appearance="outline">
+                            <mat-label>Nombre del producto</mat-label>
+                            <input matInput type="text" placeholder="Nombre del producto" formControlName="title" />
+                        </mat-form-field>
+                        <mat-form-field class="col-xs-12" color="accent" appearance="outline">
+                            <mat-label>Descripción</mat-label>
+                            <textarea rows="5" matInput type="text" placeholder="Descripción del producto"
+                                formControlName="description"></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4" color="accent" appearance="outline">
+                            <mat-label>Precio</mat-label>
+                            <input matInput type="number" placeholder="Precio del producto" formControlName="precio" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-8" color="accent" appearance="outline">
+                            <mat-label>Marca</mat-label>
+                            <input matInput type="text" placeholder="Marca" formControlName="marca" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-12" color="accent" appearance="outline">
+                            <mat-label>Tipo de licor</mat-label>
+                            <mat-select formControlName="typeID">
+                                <mat-option *ngFor="let type of objTypes" [value]="type._id.$oid">{{type.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="footer">
+        <button [disabled]="form.invalid" mat-raised-button class="k-btn-pry-yellow" (click)="submit()">
+            <mat-icon>{{data.isNew ? 'add': 'edit'}}</mat-icon>
+            {{data.isNew ? 'Crear': 'Actualizar'}} producto</button>
+    </section>
+
+</main>

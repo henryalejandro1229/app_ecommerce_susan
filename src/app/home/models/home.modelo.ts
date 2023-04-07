@@ -20,6 +20,7 @@ export interface ProductoModelo {
   description: string;
   imageUrl: string;
   precio: number;
+  marca: string;
 }
 
 export interface ImagenModelo {

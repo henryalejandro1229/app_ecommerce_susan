@@ -132,6 +132,7 @@ export class HomeService {
     .append('description', formData.description)
     .append('typeID', formData.typeID)
     .append('precio', formData.precio)
+    .append('marca', formData.marca)
     .append('imageUrl', imageUrl);
     return this.http.get(`${environment.url}/products/createProduct.php`, {
       params,
@@ -145,6 +146,7 @@ export class HomeService {
       .append('description', formData.description)
       .append('typeID', formData.typeID)
       .append('precio', formData.precio)
+      .append('marca', formData.marca)
       .append('imageUrl', imageUrl);
     return this.http.get(`${environment.url}/products/updateProduct.php`, {
       params,
