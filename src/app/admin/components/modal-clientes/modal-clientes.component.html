@@ -1,1 +1,47 @@
-<p>modal-clientes works!</p>
+<main>
+    <header class="modal-header">
+        <div class="modal-title">
+            {{data.isNew ? 'Nuevo': 'Editar'}} cliente
+        </div>
+
+        <button mat-icon-button mat-dialog-close tabindex="-1">
+            <mat-icon class="close-icon btn-close-modal">close</mat-icon>
+        </button>
+    </header>
+
+    <section class="modal-body">
+
+        <div class="subtitle">
+            <div>
+                Datos del cliente
+            </div>
+            <div class="linear"></div>
+        </div>
+
+        <form [formGroup]="form">
+            <div class="row">
+                <mat-form-field class="col-xs-12" color="accent" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" placeholder="Nombre" formControlName="name" />
+                </mat-form-field>
+                <mat-form-field class="col-xs-12" color="accent" appearance="outline">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput type="text" placeholder="Correo electrónico" formControlName="email" />
+                </mat-form-field>
+                <mat-form-field class="col-xs-12" color="accent" appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="text" placeholder="Contraseña" formControlName="password" />
+                </mat-form-field>
+                <mat-slide-toggle formControlName="isAdmin">Es administrador</mat-slide-toggle>
+            </div>
+        </form>
+    </section>
+
+    <section class="footer">
+        <button [disabled]="form.invalid" mat-raised-button class="k-btn-pry-yellow" (click)="submit()">
+            <mat-icon>{{data.isNew ? 'add': 'edit'}}</mat-icon>
+            {{data.isNew ? 'Crear': 'Actualizar'}} Cliente
+        </button>
+    </section>
+
+</main>

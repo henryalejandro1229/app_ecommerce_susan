@@ -17,14 +17,17 @@ const routes: Routes = [
       },
       {
         path: 'productos',
+        data: { breadcrumb: 'Productos' },
         component: ProductosComponent,
       },
       {
         path: 'clientes',
+        data: { breadcrumb: 'Clientes' },
         component: ClientesComponent,
       },
       {
         path: 'tipos',
+        data: { breadcrumb: 'Tipos' },
         component: TiposComponent,
       },
     ],

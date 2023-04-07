@@ -37,16 +37,20 @@
   background-color: $pry-yellow !important;
 }
 
-// .k-btn-pry-pink {
-//   background-color: $pry-pink !important;
-//   color: #FFF !important;
-// }
+.k-btn-pry-yellow {
+  background-color: $pry-yellow !important;
+  color: $pry-black !important;
+}
 
-// .k-btn-pry-pink:disabled {
-//   background-color: #BDBDBD !important;
-//   box-shadow: none !important;
-//   cursor: not-allowed !important;
-// }
+.icon-pry-yellow {
+  color: $pry-yellow !important;
+}
+
+.k-btn-pry-yellow:disabled {
+  background-color: #BDBDBD !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
 
 .k-btn-pry-danger {
   background-color: $pry-red !important;
