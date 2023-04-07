@@ -125,9 +125,6 @@ export class ModalProductosComponent implements OnInit {
 
     this.objImagen.nombreArchivo = file.name;
     const objectURL = URL.createObjectURL(file);
-  // Y a la fuente de la imagen le ponemos el objectURL
-  console.log(objectURL);
-  
     this.imagenPrevisualizacion.nativeElement.src = objectURL;
 
     if (files && file) {

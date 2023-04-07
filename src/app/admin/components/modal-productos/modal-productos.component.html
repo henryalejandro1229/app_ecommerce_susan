@@ -17,7 +17,7 @@
                         <div class="col-xs-12 mb-4" color="accent" appearance="outline">
                             <!-- <label for="formFile" class="form-label">Imagen del producto</label> -->
                             <div class="col-xs-12 d-flex justify-content-center mb-3 container-image">
-                                <img *ngIf="data.isNew" src="../../../../assets/resources/newProduct.jpg" #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
+                                <img *ngIf="data.isNew" src="../../../../assets/resources/default.png" #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
                                 <img *ngIf="!data.isNew" src="{{urlImage}}/{{imageName}}" #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
                             </div>
                             <input class="form-control" type="file" accept="image/*" (change)="seleccionarImagen($event)">

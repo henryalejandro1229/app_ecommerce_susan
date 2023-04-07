@@ -81,16 +81,16 @@
                 </form>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="_auth.isAdmin">
-                <button class="text-white" mat-button (click)="routerLink('/admin')">
+                <button mat-button (click)="routerLink('/admin')">
                     DASHBOARD
                 </button>
-                <button class="text-white" mat-button (click)="routerLink('/admin/clientes')">
+                <button mat-button (click)="routerLink('/admin/clientes')">
                     CLIENTES
                 </button>
-                <button class="text-white" mat-button (click)="routerLink('/admin/productos')">
+                <button mat-button (click)="routerLink('/admin/productos')">
                     PRODUCTOS
                 </button>
-                <button class="text-white" mat-button (click)="routerLink('/admin/tipos')">
+                <button mat-button (click)="routerLink('/admin/tipos')">
                     TIPOS DE LICOR
                 </button>
             </ul>

@@ -1,1 +1,42 @@
-<p>tipos works!</p>
+<div class="container-fluid p-4">
+    <div class="py-1">
+        <div class="d-flex justify-content-between"><b class="h3">Tipos de licor disponibles</b>
+            <button mat-raised-button class="k-btn-pry-yellow" (click)="openModal(true)">
+                <mat-icon>add</mat-icon>
+                Agregar tipo de licor
+            </button>
+        </div>
+        <p class="h6 fw-light">Listado de tipos de licor disponibles</p>
+    </div>
+    <div class="py-4">
+        <table mat-table [dataSource]="objTypes" class="shadow">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Descripcióm </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Opciones </th>
+                <td mat-cell class="text-center" *matCellDef="let element">
+                    <button mat-icon-button class="icon-pry-yellow" matTooltip="Editar tipo de licor"
+                        (click)="openModal(false , element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" matTooltip="Eliminar tipo de licor" (click)="deleteType(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row class="example-element-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

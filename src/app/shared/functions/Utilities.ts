@@ -2,13 +2,6 @@ import swal from 'sweetalert2';
 
 export function showNotifySuccess(title: string) {
   return swal.fire({
-    // position: 'bottom-right',
-    // timer: 2500,
-    // type: 'success',
-    // titleText: title,
-    // text: message,
-    // showCloseButton: false,
-    // showConfirmButton: false,
     position: 'top-end',
     icon: 'success',
     title: title,
