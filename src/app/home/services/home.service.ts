@@ -91,6 +91,10 @@ export class HomeService {
   //   return this.http.post(url, body);
   // }
 
+  findProduct(txtSearch: string): Observable<any> {
+    return this.http.get(`${environment.url}/products/findProduct.php?txtSearch=${txtSearch}`);
+  }
+
   getTypes(): Observable<any> {
     return this.http.get(`${environment.url}/products/getTypes.php`);
   }

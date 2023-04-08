@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoModelo, TypeModelo } from '../../models/home.modelo';
 import { HomeService } from '../../services/home.service';
 import { showNotifyError } from 'src/app/shared/functions/Utilities';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -9,10 +11,11 @@ import { showNotifyError } from 'src/app/shared/functions/Utilities';
   styleUrls: ['./inicio.component.scss'],
 })
 export class InicioComponent implements OnInit {
+  urlImage = environment.urlImg;
   objProducts!: ProductoModelo[];
   objTipos!: TypeModelo[];
 
-  constructor(private _hs: HomeService) {}
+  constructor(private _hs: HomeService, private router: Router) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -23,7 +26,7 @@ export class InicioComponent implements OnInit {
     this._hs.getProducts().subscribe(
       (res) => {
         this.objProducts = res;
-        if (this.objProducts.length > 9) this.objProducts.length = 9;
+        if (this.objProducts.length > 12) this.objProducts.length = 12;
       },
       (e) => {
         showNotifyError('Error al consultar productos');
@@ -41,5 +44,17 @@ export class InicioComponent implements OnInit {
         showNotifyError('Error al consultar tipos de licores');
       }
     );
+  }
+
+  getType(id: string): string {
+    if (this.objTipos && this.objTipos.length > 0) {
+      let type = this.objTipos.find((type) => type._id.$oid === id);
+      return type ? type.name : '';
+    }
+    return '';
+  }
+
+  verTipo(type: TypeModelo) {
+    this.router.navigate(['/home/list-product', type._id.$oid]);
   }
 }

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TypeModelo, ProductoModelo } from 'src/app/home/models/home.modelo';
 import { AuthService } from '../services/auth.service';
-import { showModalConfirmation, showNotifyError, showNotifySuccess } from '../functions/Utilities';
+import { showModalConfirmation, showNotifyError, showNotifySuccess, showNotifyWarning } from '../functions/Utilities';
 import { HomeService } from 'src/app/home/services/home.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ResultadosBusquedaComponent } from '../../home/pages/resultados-busqueda/resultados-busqueda.component';
 
 
 @Component({
@@ -17,7 +19,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     public _auth: AuthService,
-    private _hs: HomeService
+    private _hs: HomeService,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +55,27 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  verMarca(brand: TypeModelo) {
-    this.router.navigate(['/home/list-product', brand._id.$oid]);
+  verTipo(type: TypeModelo) {
+    this.router.navigate(['/home/list-product', type._id.$oid]);
+  }
+
+  search(txtSearch: string) {
+    if(!txtSearch || txtSearch.length === 0){
+      showNotifyWarning('Ingrese un texto de busqueda');
+      return;
+    }
+    this.matDialog
+      .open(ResultadosBusquedaComponent, {
+        panelClass: 'sinpadding',
+        width: '1000px',
+        height: 'auto',
+        data: {
+          txtSearch
+        },
+      })
+      .afterClosed()
+      .subscribe((res) => {
+        // if (res) this.consultaInfo();
+      });
   }
 }

@@ -12,6 +12,7 @@ import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 import { MisionVisionComponent } from './pages/mision-vision/mision-vision.component';
 import { AvisoPrivacidadComponent } from './pages/aviso-privacidad/aviso-privacidad.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
+import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,11 @@ const routes: Routes = [
         path: 'preguntas-frecuentes',
         data: { breadcrumb: 'Preguntas frecuentes' },
         component: PreguntasFrecuentesComponent,
+      },
+      {
+        path: 'resultados-busqueda',
+        data: { breadcrumb: 'Resultados de búsqueda' },
+        component: ResultadosBusquedaComponent,
       },
     ],
   },

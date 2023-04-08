@@ -16,9 +16,8 @@
                     LICORES
                 </button>
                 <mat-menu #matMenuLicoresResp="matMenu">
-                    <button mat-menu-item *ngFor="let marca of objTipos" (click)="verMarca(marca)"
-                        class="text-white"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}
-                    </button>
+                    <button mat-menu-item *ngFor="let tipo of objTipos"
+                        (click)="verTipo(tipo)"><mat-icon>radio_button_unchecked</mat-icon>{{tipo.name}}</button>
                 </mat-menu>
                 <button class="nav-link text-white" mat-menu-item (click)="routerLink('/home/mis-compras')">
                     MIS COMPRAS
@@ -51,8 +50,8 @@
                         <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
                     </button>
                     <mat-menu #matMenuLicores="matMenu">
-                        <button mat-menu-item *ngFor="let marca of objTipos"
-                            (click)="verMarca(marca)"><mat-icon>radio_button_unchecked</mat-icon>{{marca.name}}</button>
+                        <button mat-menu-item *ngFor="let tipo of objTipos"
+                            (click)="verTipo(tipo)"><mat-icon>radio_button_unchecked</mat-icon>{{tipo.name}}</button>
                     </mat-menu>
                 </li>
                 <li class="nav-item mx-2">
@@ -75,9 +74,11 @@
                 </li>
 
                 <form class="d-none d-md-flex input-group w-auto my-auto" *ngIf="!_auth.isAdmin">
-                    <input autocomplete="off" type="search" class="form-control"
-                        placeholder='Buscar producto' style="min-width: 225px;" />
-                    <span class="input-group-text border-0"><mat-icon>search</mat-icon></span>
+                    <input autocomplete="off" type="search" class="form-control" #inputSearch
+                        (keyup.enter)="search(inputSearch.value)" placeholder='Buscar producto'
+                        style="min-width: 225px;" />
+                    <span class="input-group-text border-0"><mat-icon class="icon-pry-yellow" matTooltip="Buscar"
+                            (click)="search(inputSearch.value)">search</mat-icon></span>
                 </form>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="_auth.isAdmin">

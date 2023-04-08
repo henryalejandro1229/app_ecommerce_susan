@@ -9,7 +9,6 @@ import { BreadcrumbModule } from 'angular-crumbs';
 import { CarruselComponent } from './carrusel/carrusel.component';
 import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
-import { ResultadosBusquedaComponent } from './resultados-busqueda/resultados-busqueda.component';
 
 
 
@@ -20,7 +19,6 @@ import { ResultadosBusquedaComponent } from './resultados-busqueda/resultados-bu
     CarruselComponent,
     PageNoFoundComponent,
     NavbarAdminComponent,
-    ResultadosBusquedaComponent,
   ],
   imports: [
     CommonModule,

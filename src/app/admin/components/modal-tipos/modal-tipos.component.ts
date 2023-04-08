@@ -67,7 +67,7 @@ export class ModalTiposComponent implements OnInit {
       .subscribe(
         (res: any) => {
           showNotifySuccess(
-            'Categoría actualizada'
+            'Tipo de licor actualizado'
           );
           if (this.objImagen.nombreArchivo.length > 0) this.uploadImage();
         },
@@ -83,12 +83,12 @@ export class ModalTiposComponent implements OnInit {
       .subscribe(
         (res: any) => {
           showNotifySuccess(
-            'Categoría creada',
+            'Tipo de licor creado',
           );
           if (this.objImagen.nombreArchivo.length > 0) this.uploadImage();
         },
         (e) => {
-          showNotifyError('Error al crear categoría');
+          showNotifyError('Error al crear tipo de licor');
         }
       );
   }

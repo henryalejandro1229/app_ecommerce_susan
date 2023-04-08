@@ -32,7 +32,8 @@ export class AuthService {
   logout() {
     this.isAuth = false;
     this.isAdmin = false;
-    return localStorage.removeItem('token');
+    localStorage.removeItem('token');
+    localStorage.removeItem('isAdmin');
   }
 
   getSesion() {

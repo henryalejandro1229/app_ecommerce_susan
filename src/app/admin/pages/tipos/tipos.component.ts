@@ -57,17 +57,17 @@ export class TiposComponent implements OnInit {
 
   deleteType(categoria: TypeModelo) {
     showModalConfirmation(
-      'Eliminar categoría',
-      '¿Seguro que deseas eliminar esta categoría?'
+      'Eliminar tipo de licor',
+      '¿Seguro que deseas eliminar este tipo de licor?'
     ).then((res) => {
       if (res.isConfirmed) {
         this._hs.deleteType(categoria._id.$oid).subscribe(
           (res) => {
-            showNotifySuccess('Categoría eliminada');
+            showNotifySuccess('Tipo de licor eliminada');
             this.consultaInfo();
           },
           (e) => {
-            showNotifyError('Error al eliminar la categoría');
+            showNotifyError('Error al eliminar la tipo de licor');
           }
         );
       }

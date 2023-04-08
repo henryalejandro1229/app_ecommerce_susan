@@ -109,7 +109,7 @@ export class ModalProductosComponent implements OnInit {
           if (this.objImagen.nombreArchivo.length > 0) this.uploadImage();
         },
         (e) => {
-          showNotifyError('Error al crear categoría');
+          showNotifyError('Error al crear producto');
         }
       );
   }
