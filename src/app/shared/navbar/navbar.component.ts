@@ -64,18 +64,6 @@ export class NavbarComponent implements OnInit {
       showNotifyWarning('Ingrese un texto de busqueda');
       return;
     }
-    this.matDialog
-      .open(ResultadosBusquedaComponent, {
-        panelClass: 'sinpadding',
-        width: '1000px',
-        height: 'auto',
-        data: {
-          txtSearch
-        },
-      })
-      .afterClosed()
-      .subscribe((res) => {
-        // if (res) this.consultaInfo();
-      });
+    this.router.navigate([`/home/resultados-busqueda`], {queryParams : {"search" : txtSearch}});
   }
 }

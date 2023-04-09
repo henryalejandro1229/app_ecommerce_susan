@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/colores.scss';
+
 .modal-header {
   display: flex;
   align-items: center;
@@ -45,13 +47,13 @@
   }
 }
 
+.txt-yellow {
+  color: $pry-yellow !important;
+}
+
 .container-image {
-  background-color: #4b4b4b;
-  border-radius: 6px;
-  border: solid #565656 3px;
-  border-style: dotted;
   img {
-    height: 300px;
+    height: 180px;
     width: 100%;
     object-fit: scale-down;
   }

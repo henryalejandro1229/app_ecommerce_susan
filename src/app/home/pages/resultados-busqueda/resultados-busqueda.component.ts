@@ -4,6 +4,7 @@ import { ProductoModelo, TypeModelo } from 'src/app/home/models/home.modelo';
 import { HomeService } from 'src/app/home/services/home.service';
 import { environment } from 'src/environments/environment';
 import { showNotifyError } from '../../../shared/functions/Utilities';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resultados-busqueda',
@@ -28,20 +29,11 @@ export class ResultadosBusquedaComponent implements OnInit {
   ];
 
   constructor(
-    private matRef: MatDialogRef<ResultadosBusquedaComponent>,
     private _hs: HomeService,
-    @Inject(MAT_DIALOG_DATA)
-    @Optional()
-    public data: {
-      txtSearch: string;
-    }
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    if (this.data.txtSearch) {
-      this.txtSearch = this.data.txtSearch;
-      this.buscar();
-    }
     this._hs.getTypes().subscribe(
       (res: TypeModelo[]) => {
         this.objTypes = res;
@@ -50,10 +42,16 @@ export class ResultadosBusquedaComponent implements OnInit {
         showNotifyError('Error consultar información');
       }
     );
+    this.activatedRoute.queryParams.subscribe((res) => {
+      if(res) {
+        this.buscar(res['search']);
+        this.txtSearch = res['search'];
+      }
+    });
   }
 
-  buscar(): void {
-    this._hs.findProduct(this.txtSearch).subscribe(
+  buscar(txtSearch: string): void {
+    this._hs.findProduct(txtSearch).subscribe(
       (res: ProductoModelo[]) => {
         this.objProductos = res;
       },

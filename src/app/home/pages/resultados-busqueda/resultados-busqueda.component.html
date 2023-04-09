@@ -1,49 +1,39 @@
-<main>
-    <header class="modal-header">
-        <div class="modal-title">
-            Resultados de búsqueda
+<!-- <img src="./../../../../assets/resources/sld1.png" class="img-fluid" alt="Responsive image"> -->
+<div class="container">
+    <div class="py-4">
+        <p class="h3">{{txtSearch}}</p>
+        <p class="h5 fw-light">{{objProductos ? objProductos.length : '0'}} resultados</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="py-4" *ngIf="objProductos">
+        <div class="row g-4 pb-4">
+            <div class="col" *ngFor="let prod of objProductos">
+                <div class="card hover-shadow">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4 py-4">
+                                <div class="container-image">
+                                    <img src="{{urlImage}}/{{prod.imageUrl}}">
+                                </div>
+                            </div>
+                            <div class="col-md-8 py-4">
+                                <p class="h4 fw-light text-truncate">
+                                    {{prod.description}}
+                                </p>
+                                <p class="h7 fw-light">{{prod.marca}}</p>
+                                <p class="h6 fw-light">Tipo de licor: <b>{{getType(prod.typeID)}}</b></p>
+                                <p class="h3">
+                                    <b class="text-muted fst-normal txt-yellow">$ {{prod.precio}}</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <button mat-icon-button mat-dialog-close tabindex="-1">
-            <mat-icon class="close-icon btn-close-modal">close</mat-icon>
-        </button>
-    </header>
-
-    <section class="modal-body">
-        <div class="row justify-content-center">
-            <mat-form-field class="col-6" color="accent">
-                <mat-label>Buscar</mat-label>
-                <input matInput type="text" placeholder="Buscar producto" [(ngModel)]="txtSearch" (keyup.enter)="buscar()"/>
-                <mat-icon class="icon-pry-yellow" (click)="buscar()" matSuffix>search</mat-icon>
-            </mat-form-field>
-        </div>
-        <table mat-table [dataSource]="objProductos" class="shadow">
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
-            </ng-container>
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-            </ng-container>
-            <ng-container matColumnDef="description">
-                <th mat-header-cell *matHeaderCellDef> Descripción </th>
-                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-            </ng-container>
-            <ng-container matColumnDef="categoria">
-                <th mat-header-cell *matHeaderCellDef> Tipo </th>
-                <td mat-cell *matCellDef="let element"> {{getType(element.typeID)}} </td>
-            </ng-container>
-            <ng-container matColumnDef="marca">
-                <th mat-header-cell *matHeaderCellDef> Marca </th>
-                <td mat-cell *matCellDef="let element"> {{element.marca}} </td>
-            </ng-container>
-            <ng-container matColumnDef="precio">
-                <th mat-header-cell *matHeaderCellDef> Precio </th>
-                <td mat-cell *matCellDef="let element"> ${{element.precio}} </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row class="example-element-row" *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </section>
-</main>
+    <div class="py-4" *ngIf="!objProductos">
+        <p class="h3">Esta categoría no cuenta con productos</p>
+    </div>
+</div>
