@@ -5,7 +5,7 @@
         <p class="h5 fw-light">{{objProductos ? objProductos.length : '0'}} resultados</p>
     </div>
     <mat-divider></mat-divider>
-    <div class="py-4" *ngIf="objProductos">
+    <div class="py-4" *ngIf="objProductos || !loading">
         <div class="row g-4 pb-4">
             <div class="col" *ngFor="let prod of objProductos">
                 <div class="card hover-shadow">
@@ -33,7 +33,13 @@
         </div>
     </div>
 
-    <div class="py-4" *ngIf="!objProductos">
-        <p class="h3">Esta categoría no cuenta con productos</p>
+    <div *ngIf="loading" class="d-flex justify-content-center py-5">
+        <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+
+    <div class="py-4" *ngIf="objProductos.length === 0">
+        <p class="h3">No se encontraron resultados de "{{txtSearch}}"</p>
     </div>
 </div>

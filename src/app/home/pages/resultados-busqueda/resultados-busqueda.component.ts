@@ -18,6 +18,7 @@ export class ResultadosBusquedaComponent implements OnInit {
   txtSearch!: string;
   objProductos!: ProductoModelo[];
   objTypes!: TypeModelo[];
+  loading = false;
 
   displayedColumns: string[] = [
     'position',
@@ -34,29 +35,39 @@ export class ResultadosBusquedaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._hs.getTypes().subscribe(
-      (res: TypeModelo[]) => {
-        this.objTypes = res;
-      },
-      (e) => {
-        showNotifyError('Error consultar información');
-      }
-    );
+    this.getTypes();
     this.activatedRoute.queryParams.subscribe((res) => {
-      if(res) {
+      if (res) {
         this.buscar(res['search']);
         this.txtSearch = res['search'];
       }
     });
   }
 
+  getTypes() {
+    this.loading = true;
+    this._hs.getTypes().subscribe(
+      (res: TypeModelo[]) => {
+        this.objTypes = res;
+        this.loading = false;
+      },
+      (e) => {
+        showNotifyError('Error consultar información');
+        this.loading = false;
+      }
+    );
+  }
+
   buscar(txtSearch: string): void {
+    this.loading = true;
     this._hs.findProduct(txtSearch).subscribe(
       (res: ProductoModelo[]) => {
         this.objProductos = res;
+        this.loading = false;
       },
       (e) => {
         showNotifyError('Error al buscar');
+        this.loading = false;
       }
     );
   }
