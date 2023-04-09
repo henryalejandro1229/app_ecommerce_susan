@@ -11,7 +11,7 @@ import { ModalTiposComponent } from '../../components/modal-tipos/modal-tipos.co
   styleUrls: ['./tipos.component.scss']
 })
 export class TiposComponent implements OnInit {
-
+  loading = true;
   displayedColumns: string[] = [
     'position',
     'name',
@@ -27,12 +27,15 @@ export class TiposComponent implements OnInit {
   }
 
   consultaInfo(): void {
+    this.loading = true;
     this._hs.getTypes().subscribe(
       (res: TypeModelo[]) => {
         this.objTypes = res;
+        this.loading = false;
       },
       (e) => {
         showNotifyError('Error consultar información');
+        this.loading = false;
       }
     );
   }
@@ -61,13 +64,16 @@ export class TiposComponent implements OnInit {
       '¿Seguro que deseas eliminar este tipo de licor?'
     ).then((res) => {
       if (res.isConfirmed) {
+        this.loading = true;
         this._hs.deleteType(categoria._id.$oid).subscribe(
           (res) => {
             showNotifySuccess('Tipo de licor eliminada');
             this.consultaInfo();
+            this.loading = false;
           },
           (e) => {
             showNotifyError('Error al eliminar la tipo de licor');
+            this.loading = false;
           }
         );
       }

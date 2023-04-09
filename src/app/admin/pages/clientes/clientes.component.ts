@@ -11,7 +11,7 @@ import { ModalClientesComponent } from '../../components/modal-clientes/modal-cl
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
-
+  loading = false;
   displayedColumns: string[] = [
     'position',
     'name',
@@ -29,12 +29,15 @@ export class ClientesComponent implements OnInit {
   }
 
   consultaInfo(): void {
+    this.loading = true;
     this._hs.getUsuarios().subscribe(
       (res: ClienteModelo[]) => {
         this.objUsers = res;
+        this.loading = false;
       },
       (e) => {
         showNotifyError('Error consultar información');
+        this.loading = false;
       }
     );
   }
@@ -62,13 +65,16 @@ export class ClientesComponent implements OnInit {
       '¿Está seguro de eliminar este cliente?'
     ).then((res) => {
       if (res.isConfirmed) {
+        this.loading = true;
         this._hs.deleteClient(cliente._id.$oid).subscribe(
           (res) => {
             showNotifySuccess('Cliente eliminado');
             this.consultaInfo();
+            this.loading = false;
           },
           (e) => {
             showNotifyError('Error al eliminar cliente');
+            this.loading = false;
           }
         );
       }

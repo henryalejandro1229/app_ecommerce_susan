@@ -9,9 +9,10 @@
         <p class="h6 fw-light">Listado de tipos de licor disponibles</p>
     </div>
     <div class="py-4">
-        <table mat-table [dataSource]="objTypes" class="shadow">
+        <mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="objTypes" class="shadow"  *ngIf="objTypes || !loading">
             <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <th mat-header-cell *matHeaderCellDef> # </th>
                 <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
             </ng-container>
             <ng-container matColumnDef="name">
@@ -19,7 +20,7 @@
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
             <ng-container matColumnDef="description">
-                <th mat-header-cell *matHeaderCellDef> Descripcióm </th>
+                <th mat-header-cell *matHeaderCellDef> Descripción </th>
                 <td mat-cell *matCellDef="let element"> {{element.description}} </td>
             </ng-container>
             <ng-container matColumnDef="options">

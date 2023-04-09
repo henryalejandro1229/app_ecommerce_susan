@@ -9,9 +9,10 @@
         <p class="h6 fw-light">Listado de productos disponibles</p>
     </div>
     <div class="py-4">
-        <table mat-table [dataSource]="objProducts" class="shadow">
+        <mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="objProducts" class="shadow" *ngIf="objProducts || !loading">
             <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <th mat-header-cell *matHeaderCellDef> # </th>
                 <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
             </ng-container>
             <ng-container matColumnDef="name">

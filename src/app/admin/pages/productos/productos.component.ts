@@ -11,7 +11,7 @@ import { ModalProductosComponent } from '../../components/modal-productos/modal-
   styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit {
-
+  loading = false;
   displayedColumns: string[] = [
     'position',
     'name',
@@ -31,19 +31,24 @@ export class ProductosComponent implements OnInit {
   }
 
   consultaInfo(): void {
+    this.loading = true;
     this._hs.getProducts().subscribe(
       (res: ProductoModelo[]) => {
         this.objProducts = res;
+        this.loading = false;
       },
       (e) => {
+        this.loading = false;
         showNotifyError('Error consultar información');
       }
     );
     this._hs.getTypes().subscribe(
       (res: TypeModelo[]) => {
         this.objTypes = res;
+        this.loading = false;
       },
       (e) => {
+        this.loading = false;
         showNotifyError('Error consultar información');
       }
     );
@@ -80,14 +85,17 @@ export class ProductosComponent implements OnInit {
       '¿Seguro que deseas eliminar este producto?'
     ).then((res) => {
       if (res.isConfirmed) {
+        this.loading = true;
         this._hs.deleteProduct(producto._id.$oid).subscribe(
           (res) => {
+            this.loading = false;
             showNotifySuccess(
               'Producto eliminado'
             );
             this.consultaInfo();
           },
           (e) => {
+            this.loading = false;
             showNotifyError('Error al eliminar producto');
           }
         );
