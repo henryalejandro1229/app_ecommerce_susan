@@ -49,7 +49,7 @@ const routes: Routes = [
         component: ResetPasswordComponent,
       },
       {
-        path: 'list-product/:id',
+        path: 'list-product',
         data: { breadcrumb: 'Productos de categoría' },
         component: ListProductsComponent,
       },

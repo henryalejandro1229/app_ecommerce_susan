@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    data: { breadcrumb: 'Home'},
+    data: { breadcrumb: 'Inicio'},
     loadChildren: () =>
       import('./home/home.module').then((mod) => mod.HomeModule),
   },

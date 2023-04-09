@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TypeModelo, ProductoModelo } from 'src/app/home/models/home.modelo';
 import { AuthService } from '../services/auth.service';
-import { showModalConfirmation, showNotifyError, showNotifySuccess, showNotifyWarning } from '../functions/Utilities';
+import {
+  showModalConfirmation,
+  showNotifyError,
+  showNotifySuccess,
+  showNotifyWarning,
+} from '../functions/Utilities';
 import { HomeService } from 'src/app/home/services/home.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultadosBusquedaComponent } from '../../home/pages/resultados-busqueda/resultados-busqueda.component';
-
 
 @Component({
   selector: 'app-navbar',
@@ -56,14 +60,18 @@ export class NavbarComponent implements OnInit {
   }
 
   verTipo(type: TypeModelo) {
-    this.router.navigate(['/home/list-product', type._id.$oid]);
+    this.router.navigate(['/home/list-product'], {
+      queryParams: { ID: type._id.$oid },
+    });
   }
 
   search(txtSearch: string) {
-    if(!txtSearch || txtSearch.length === 0){
+    if (!txtSearch || txtSearch.length === 0) {
       showNotifyWarning('Ingrese un texto de busqueda');
       return;
     }
-    this.router.navigate([`/home/resultados-busqueda`], {queryParams : {"search" : txtSearch}});
+    this.router.navigate(['/home/resultados-busqueda'], {
+      queryParams: { search: txtSearch },
+    });
   }
 }
