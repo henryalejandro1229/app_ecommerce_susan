@@ -14,6 +14,7 @@ export class InicioComponent implements OnInit {
   urlImage = environment.urlImg;
   objProducts!: ProductoModelo[];
   objTipos!: TypeModelo[];
+  loading = false;
 
   constructor(private _hs: HomeService, private router: Router) {}
 
@@ -23,25 +24,31 @@ export class InicioComponent implements OnInit {
   }
 
   getProducts() {
+    this.loading = true;
     this._hs.getProducts().subscribe(
       (res) => {
         this.objProducts = res;
         if (this.objProducts.length > 12) this.objProducts.length = 12;
+        this.loading = false;
       },
       (e) => {
         showNotifyError('Error al consultar productos');
+        this.loading = false;
       }
     );
   }
 
   getTypes() {
+    this.loading = true;
     this._hs.getTypes().subscribe(
       (res) => {
         this.objTipos = res;
         if (this.objTipos.length > 6) this.objTipos.length = 6;
+        this.loading = false;
       },
       (e) => {
         showNotifyError('Error al consultar tipos de licores');
+        this.loading = false;
       }
     );
   }
@@ -55,6 +62,6 @@ export class InicioComponent implements OnInit {
   }
 
   verTipo(type: TypeModelo) {
-    this.router.navigate(['/home/list-product', type._id.$oid]);
+    this.router.navigate(['/home/list-product'], {queryParams: {'ID': type._id.$oid}});
   }
 }
