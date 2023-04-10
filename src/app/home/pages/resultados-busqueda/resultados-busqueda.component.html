@@ -6,25 +6,57 @@
     </div>
     <mat-divider></mat-divider>
     <div class="py-4" *ngIf="objProductos || !loading">
-        <div class="row g-4 pb-4">
-            <div class="col" *ngFor="let prod of objProductos">
-                <div class="card hover-shadow">
+        <div class="row">
+            <div class="col-md-3 g-4 pb-4 py-4 rounded">
+                <h2 class="fw-light"><b>Filtrar por precio</b></h2>
+                <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4 py-4">
-                                <div class="container-image">
-                                    <img src="{{urlImage}}/{{prod.imageUrl}}">
+                            <mat-form-field class="col-md-5">
+                                <mat-label>Mínimo</mat-label>
+                                <input matInput [(ngModel)]="min" min="0" type="number" (change)="validaFiltroPrecio()">
+                            </mat-form-field>
+                            <mat-form-field class="col-md-5">
+                                <mat-label>Máximo</mat-label>
+                                <input matInput [(ngModel)]="max" min="0" type="number" (change)="validaFiltroPrecio()">
+                            </mat-form-field>
+                            <button class="col-md-2 bg-light" matTooltip="Aplicar" (click)="aplicarFiltroPrecio()" mat-icon-button [disabled]="priceError">
+                                <mat-icon color="accent">search</mat-icon>
+                            </button>
+                        </div>
+                        <div class="alert alert-danger col-md-12" role="alert" *ngIf="priceError">
+                            El precio máximo debe ser mayor al mínimo.
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="fw-light pt-3"><b>Filtrar por tipo de licor</b></h2>
+                <mat-radio-group [(ngModel)]="typeSelectID" (change)="filterType()">
+                    <mat-radio-button class="d-block p-2" *ngFor="let type of objTypes" [value]="type._id.$oid" >
+                        {{type.name}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="row g-4 pb-4 col-md-9">
+                <div class="col" *ngFor="let prod of objProductos">
+                    <div class="card hover-shadow">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4 py-4">
+                                    <div class="container-image">
+                                        <img src="{{urlImage}}/{{prod.imageUrl}}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8 py-4">
-                                <p class="h4 fw-light text-truncate">
-                                    {{prod.description}}
-                                </p>
-                                <p class="h7 fw-light">{{prod.marca}}</p>
-                                <p class="h6 fw-light">Tipo de licor: <b>{{getType(prod.typeID)}}</b></p>
-                                <p class="h3">
-                                    <b class="text-muted fst-normal txt-yellow">$ {{prod.precio}}</b>
-                                </p>
+                                <div class="col-md-8 p-4">
+                                    <p class="h4 fw-light text-truncate">
+                                        {{prod.description}}
+                                    </p>
+                                    <p class="h7 fw-light">{{prod.marca}}</p>
+                                    <p class="h6 fw-light">Tipo de licor: <b>{{getType(prod.typeID)}}</b></p>
+                                    <p class="h3">
+                                        <b class="text-muted fst-normal txt-yellow">$ {{prod.precio}}</b>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -39,7 +71,7 @@
         </div>
     </div>
 
-    <div class="py-4" *ngIf="objProductos.length === 0">
+    <div class="py-4" *ngIf="!objProductos || objProductos.length === 0">
         <p class="h3">No se encontraron resultados de "{{txtSearch}}"</p>
     </div>
 </div>

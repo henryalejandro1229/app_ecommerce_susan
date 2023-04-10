@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { TypeModelo, ClienteModelo, ImagenModelo, ProductoModelo } from '../models/home.modelo';
+import {
+  TypeModelo,
+  ClienteModelo,
+  ImagenModelo,
+  ProductoModelo,
+} from '../models/home.modelo';
 
 @Injectable({
   providedIn: 'root',
@@ -16,10 +21,10 @@ export class HomeService {
 
   createClient(formData: ClienteModelo): Observable<any> {
     let params = new HttpParams()
-    .append('name', formData.name)
-    .append('email', formData.email)
-    .append('password', formData.password)
-    .append('isAdmin', formData.isAdmin)
+      .append('name', formData.name)
+      .append('email', formData.email)
+      .append('password', formData.password)
+      .append('isAdmin', formData.isAdmin);
     return this.http.get(`${environment.url}/users/createClient.php`, {
       params,
     });
@@ -38,9 +43,7 @@ export class HomeService {
   }
 
   deleteClient(id: string): Observable<any> {
-    return this.http.get(
-      `${environment.url}/users/deleteClient.php?id=${id}`
-    );
+    return this.http.get(`${environment.url}/users/deleteClient.php?id=${id}`);
   }
 
   validateEmail(email: string): Observable<any> {
@@ -91,8 +94,25 @@ export class HomeService {
   //   return this.http.post(url, body);
   // }
 
-  findProduct(txtSearch: string): Observable<any> {
-    return this.http.get(`${environment.url}/products/findProduct.php?txtSearch=${txtSearch}`);
+  findProduct(
+    txtSearch: string,
+    min: number,
+    max: number,
+    type: string
+  ): Observable<any> {
+    console.log(type);
+    
+    let params = new HttpParams().append('txtSearch', txtSearch.toLowerCase()).append('typeID', type ? type : '0').append('min', min ? min : -1).append('max', max ? max : -1);
+    // if (min) {
+    //   params.append('min', min);
+    // }
+    // if (max) {
+    //   params.append('max', max);
+    // }
+      params.append('typeID', type);
+    return this.http.get(`${environment.url}/products/findProduct.php`, {
+      params,
+    });
   }
 
   getTypes(): Observable<any> {
@@ -109,7 +129,11 @@ export class HomeService {
     });
   }
 
-  updateType(id: string, formData: TypeModelo, imageUrl: string): Observable<any> {
+  updateType(
+    id: string,
+    formData: TypeModelo,
+    imageUrl: string
+  ): Observable<any> {
     let params = new HttpParams()
       .append('id', id)
       .append('name', formData.name)
@@ -121,9 +145,7 @@ export class HomeService {
   }
 
   deleteType(id: string): Observable<any> {
-    return this.http.get(
-      `${environment.url}/products/deleteType.php?id=${id}`
-    );
+    return this.http.get(`${environment.url}/products/deleteType.php?id=${id}`);
   }
 
   getProducts(): Observable<any> {
@@ -132,18 +154,22 @@ export class HomeService {
 
   createProduct(formData: ProductoModelo, imageUrl: string): Observable<any> {
     let params = new HttpParams()
-    .append('title', formData.title)
-    .append('description', formData.description)
-    .append('typeID', formData.typeID)
-    .append('precio', formData.precio)
-    .append('marca', formData.marca)
-    .append('imageUrl', imageUrl);
+      .append('title', formData.title)
+      .append('description', formData.description)
+      .append('typeID', formData.typeID)
+      .append('precio', formData.precio)
+      .append('marca', formData.marca)
+      .append('imageUrl', imageUrl);
     return this.http.get(`${environment.url}/products/createProduct.php`, {
       params,
     });
   }
 
-  updateProduct(id: string, formData: ProductoModelo, imageUrl: string): Observable<any> {
+  updateProduct(
+    id: string,
+    formData: ProductoModelo,
+    imageUrl: string
+  ): Observable<any> {
     let params = new HttpParams()
       .append('id', id)
       .append('title', formData.title)
@@ -156,7 +182,7 @@ export class HomeService {
       params,
     });
   }
-  
+
   deleteProduct(id: string): Observable<any> {
     return this.http.get(
       `${environment.url}/products/deleteProduct.php?id=${id}`
@@ -170,12 +196,13 @@ export class HomeService {
   }
 
   getType(id: string): Observable<any> {
-    return this.http.get(
-      `${environment.url}/products/getType.php?id=${id}`
-    );
+    return this.http.get(`${environment.url}/products/getType.php?id=${id}`);
   }
 
   uploadFile(archivo: ImagenModelo) {
-    return this.http.post(`${environment.url}/products/uploadImage.php`, archivo);
+    return this.http.post(
+      `${environment.url}/products/uploadImage.php`,
+      archivo
+    );
   }
 }

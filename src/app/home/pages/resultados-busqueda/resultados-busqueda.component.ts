@@ -1,10 +1,16 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ProductoModelo, TypeModelo } from 'src/app/home/models/home.modelo';
+import {
+  ProductoModelo,
+  TypeModelo,
+} from 'src/app/home/models/home.modelo';
 import { HomeService } from 'src/app/home/services/home.service';
 import { environment } from 'src/environments/environment';
-import { showNotifyError } from '../../../shared/functions/Utilities';
-import { ActivatedRoute } from '@angular/router';
+import {
+  showNotifyError,
+  showNotifyWarning,
+} from '../../../shared/functions/Utilities';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-resultados-busqueda',
@@ -19,6 +25,10 @@ export class ResultadosBusquedaComponent implements OnInit {
   objProductos!: ProductoModelo[];
   objTypes!: TypeModelo[];
   loading = false;
+  min!: number;
+  max!: number;
+  typeSelectID!: string;
+  priceError = false;
 
   displayedColumns: string[] = [
     'position',
@@ -31,15 +41,15 @@ export class ResultadosBusquedaComponent implements OnInit {
 
   constructor(
     private _hs: HomeService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getTypes();
     this.activatedRoute.queryParams.subscribe((res) => {
       if (res) {
-        this.buscar(res['search']);
-        this.txtSearch = res['search'];
+        this.setFiltros(res);
       }
     });
   }
@@ -58,9 +68,26 @@ export class ResultadosBusquedaComponent implements OnInit {
     );
   }
 
-  buscar(txtSearch: string): void {
+  setFiltros(res: any) {
+    console.log(res);
+    this.txtSearch = res['search'];
+    this.min = res['min'];
+    this.max = res['max'];
+    this.typeSelectID = res['typeID'];
+    this.buscar();
+  }
+
+  validaFiltroPrecio() {
+    if (this.min && this.max) {
+      this.priceError = this.min > this.max;
+      return;
+    }
+    this.priceError = false;
+  }
+
+  buscar(): void {
     this.loading = true;
-    this._hs.findProduct(txtSearch).subscribe(
+    this._hs.findProduct(this.txtSearch, this.min, this.max, this.typeSelectID).subscribe(
       (res: ProductoModelo[]) => {
         this.objProductos = res;
         this.loading = false;
@@ -78,5 +105,27 @@ export class ResultadosBusquedaComponent implements OnInit {
       return type ? type.name : '';
     }
     return '';
+  }
+
+  aplicarFiltroPrecio() {
+    this.router.navigate([], {
+      queryParams: {
+        search: this.txtSearch,
+        min: this.min,
+        max: this.max,
+        typeID: this.typeSelectID,
+      },
+    });
+  }
+
+  filterType() {
+    this.router.navigate([], {
+      queryParams: {
+        search: this.txtSearch,
+        min: this.min,
+        max: this.max,
+        typeID: this.typeSelectID,
+      },
+    });
   }
 }

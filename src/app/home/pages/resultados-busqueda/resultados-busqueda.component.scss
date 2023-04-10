@@ -58,3 +58,39 @@
     object-fit: scale-down;
   }
 }
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color: $pry-yellow; 
+}
+
+::ng-deep .mat-radio-outer-circle{
+  border-color:rgb(184, 184, 184); 
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle{
+  color: $pry-yellow;
+  background-color: $pry-yellow;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: $pry-yellow;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: rgb(35, 35, 35) !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #d4d4d4 !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: $pry-yellow !important;
+}
+
+::ng-deep .mat-form-field-label{
+  color:#656565 !important;
+}
