@@ -1,27 +1,77 @@
 <section class="gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="col-12 col-md-11 col-lg-10 col-xl-9">
                 <div class="card bg-dark text-white" style="border-radius: 0.5rem;">
                     <div class="card-body p-5 text-center">
 
-                        <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="mb-md-5 mt-md-4">
                             <h2 class="fw-bold mb-2 text-uppercase">
                                 REGISTRARME
                             </h2>
                             <p class="text-white-50 mb-5">
-                                Ingresa tu correo electrónico para continuar
+                                Complete el formulario para continuar
                             </p>
                             <form [formGroup]="form">
-                                <div class="form-outline form-white mb-4">
-                                    <mat-form-field appearance="outline" color="accent" class="form-full">
-                                        <mat-label>Correo electrónico</mat-label>
-                                        <input matInput formControlName="email"
-                                            placeholder="Ingrese su correo electrónico" type="email" />
-                                    </mat-form-field>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <mat-form-field appearance="outline" color="accent" class="form-full">
+                                            <mat-label>Nombre</mat-label>
+                                            <input matInput formControlName="name"
+                                                placeholder="Ingrese su nombre" type="text" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <mat-form-field appearance="outline" color="accent" class="form-full">
+                                            <mat-label>Apellidos</mat-label>
+                                            <input matInput formControlName="apellido"
+                                                placeholder="Ingrese sus apellidos" type="text" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field appearance="outline" color="accent" class="form-full">
+                                            <mat-label>Edad</mat-label>
+                                            <input matInput formControlName="edad"
+                                                placeholder="Edad" type="number" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <mat-form-field appearance="outline" color="accent" class="form-full">
+                                            <mat-label>Correo electrónico</mat-label>
+                                            <input matInput formControlName="email"
+                                                placeholder="Ingrese su correo electrónico" type="email" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="outline" color="accent" class="form-full">
+                                            <mat-label>Contraseña</mat-label>
+                                            <input matInput (keyup)="validaPwds()" matInput
+                                                [type]="clear ? 'text' : 'password'" formControlName="password"
+                                                placeholder="Ingrese su contraseña" />
+                                            <mat-icon class="puntero" (click)="clear = !clear" matSuffix
+                                                [color]="clear ? 'primary' : ''">
+                                                {{ clear ? "visibility" : "visibility_off" }}
+                                            </mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="outline" color="accent" class="form-full">
+                                            <mat-label>Confirmar contraseña</mat-label>
+                                            <input matInput (keyup)="validaPwds()" matInput
+                                                [type]="clearConfirm ? 'text' : 'password'" formControlName="password2"
+                                                placeholder="Confirme su contraseña" />
+                                            <mat-icon class="puntero" (click)="clearConfirm = !clearConfirm" matSuffix
+                                                [color]="clearConfirm ? 'primary' : ''">
+                                                {{ clearConfirm ? "visibility" : "visibility_off" }}
+                                            </mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="alert alert-danger col-md-12" role="alert" *ngIf="!pwdsCoinciden && pwdsValue">
+                                    Las contraseñas no coinciden!
                                 </div>
                             </form>
-                            <button class="btn btn-outline-light px-5" (click)="registrarme()" type="button">
+                            <button class="btn btn-outline-light px-5 my-4" (click)="registrarme()" type="button">
                                 Registrarme
                             </button>
                         </div>
