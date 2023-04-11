@@ -61,13 +61,8 @@ export class HomeService {
     return this.http.get(url);
   }
 
-  singupAll(id: string, name: string, password: string): Observable<any> {
-    const url = `${environment.url}/users/singupAll.php?id=${id}&name=${name}&password=${password}`;
-    return this.http.get(url);
-  }
-
-  singup(email: string): Observable<any> {
-    const url = `${environment.url}/users/create.php?email=${email}`;
+  singup(email: string, name: string, apellido: string, edad: string, password: string): Observable<any> {
+    const url = `${environment.url}/users/singup.php?name=${name}&password=${password}&email=${email}&apellido=${apellido}&edad=${edad}`;
     return this.http.get(url);
   }
 
@@ -76,23 +71,23 @@ export class HomeService {
     return this.http.get(url);
   }
 
-  // sendValidateEmail(email: string, id: string): Observable<any> {
-  //   let body = {
-  //     email,
-  //     id,
-  //   };
-  //   const url = `${environment.urlEmail}/send-validate-email`;
-  //   return this.http.post(url, body);
-  // }
+  sendValidateEmail(email: string, id: string): Observable<any> {
+    let body = {
+      email,
+      id,
+    };
+    const url = `${environment.urlEmail}/send-validate-email`;
+    return this.http.post(url, body);
+  }
 
-  // sendForgotEmail(email: string, id: string): Observable<any> {
-  //   let body = {
-  //     email,
-  //     id,
-  //   };
-  //   const url = `${environment.urlEmail}/send-forgot-password`;
-  //   return this.http.post(url, body);
-  // }
+  sendForgotEmail(email: string, id: string): Observable<any> {
+    let body = {
+      email,
+      id,
+    };
+    const url = `${environment.urlEmail}/send-forgot-password`;
+    return this.http.post(url, body);
+  }
 
   findProduct(
     txtSearch: string,
@@ -100,15 +95,7 @@ export class HomeService {
     max: number,
     type: string
   ): Observable<any> {
-    console.log(type);
-    
     let params = new HttpParams().append('txtSearch', txtSearch.toLowerCase()).append('typeID', type ? type : '0').append('min', min ? min : -1).append('max', max ? max : -1);
-    // if (min) {
-    //   params.append('min', min);
-    // }
-    // if (max) {
-    //   params.append('max', max);
-    // }
       params.append('typeID', type);
     return this.http.get(`${environment.url}/products/findProduct.php`, {
       params,

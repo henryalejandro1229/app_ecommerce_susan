@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClienteModelo } from '../../models/home.modelo';
 import { HomeService } from '../../services/home.service';
-import { showNotifyError, showNotifySuccess, showNotifyWarning } from 'src/app/shared/functions/Utilities';
+import { showNotifyError, showNotifySuccess, showNotifyWarning, showSwalSuccess, showSwalWarning } from 'src/app/shared/functions/Utilities';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sing-up',
@@ -17,7 +18,7 @@ export class SingUpComponent implements OnInit {
   pwdsCoinciden = false;
   pwdsValue = false;
 
-  constructor(private _hs: HomeService) {
+  constructor(private _hs: HomeService, private _route : Router) {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -30,26 +31,65 @@ export class SingUpComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  registrarme(): void {
+  register(): void {
     if (this.form.invalid && !this.pwdsCoinciden) {
       showNotifyWarning(
         'Complete los datos del formulario para continuar'
       );
       return;
     }
-    
-    let id: string = this.objCliente._id.$oid;
     this._hs
-      .singupAll(id, this.form.value.name, this.form.value.password)
+      .singup(this.form.value.email, this.form.value.name, this.form.value.apellido, this.form.value.edad, this.form.value.password)
       .subscribe(
         (res) => {
           showNotifySuccess('Registro completado, para continuar confirme su cuenta con el link que fue enviado a su correo');
-          // this._router.navigate(['/home']);
+          this._route.navigate(['/home']);
+          this.validateEmail(true);
         },
         (e) => {
           showNotifyError('Error al registrar');
         }
       );
+  }
+
+  validateEmail(sendEmail = false): void {
+    this._hs.validateEmail(this.form.value.email).subscribe(
+      (res: any[]) => {
+        if (res.length === 1) {
+          let { email, _id } = res[0];
+          sendEmail ? this.sendEmail(email, _id.$oid) : this.register();
+          return;
+        }
+        if (res.length > 0) {
+          console.log(res[0]._id.$oid);
+          showSwalWarning(
+            'Correo existente',
+            'Ya existe una cuenta con el correo ingresado'
+          );
+          return;
+        }
+        this.register();
+      },
+      (e) => {
+        showNotifyError('Error al validar el email');
+      }
+    );
+  }
+
+  sendEmail(email: string, id: string): void {
+    console.log('sendemail');
+    
+    this._hs.sendValidateEmail(email, id).subscribe(
+      (res: any) => {
+        showSwalSuccess(
+          'Correo enviado',
+          'Para continuar, ingrese al enlace que fue enviado a su correo electrónico'
+        );
+      },
+      (e) => {
+        showNotifyError('Error al enviar correo');
+      }
+    );
   }
 
   validaPwds(): void {
