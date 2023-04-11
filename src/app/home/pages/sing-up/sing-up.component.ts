@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sing-up.component.scss'],
 })
 export class SingUpComponent implements OnInit {
-  form!: FormGroup;
+  form: FormGroup;
   clear: boolean = false;
   clearConfirm: boolean = false;
   objCliente!: ClienteModelo;
@@ -20,11 +20,11 @@ export class SingUpComponent implements OnInit {
 
   constructor(private _hs: HomeService, private _route : Router) {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required]),
-      edad: new FormControl('', [Validators.required]),
-      apellido: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      name: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i), Validators.minLength(3)]),
+      edad: new FormControl('', [Validators.required, Validators.min(18), Validators.max(100)]),
+      apellido: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i), Validators.minLength(3)]),
+      password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{7,}')]),
       password2: new FormControl('', [Validators.required]),
     });
   }
@@ -55,13 +55,12 @@ export class SingUpComponent implements OnInit {
   validateEmail(sendEmail = false): void {
     this._hs.validateEmail(this.form.value.email).subscribe(
       (res: any[]) => {
-        if (res.length === 1) {
+        if (res.length === 1 && sendEmail) {
           let { email, _id } = res[0];
-          sendEmail ? this.sendEmail(email, _id.$oid) : this.register();
+          this.sendEmail(email, _id.$oid)
           return;
         }
         if (res.length > 0) {
-          console.log(res[0]._id.$oid);
           showSwalWarning(
             'Correo existente',
             'Ya existe una cuenta con el correo ingresado'
