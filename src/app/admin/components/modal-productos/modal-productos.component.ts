@@ -38,7 +38,7 @@ export class ModalProductosComponent implements OnInit {
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       marca: new FormControl('', [Validators.required]),
-      precio: new FormControl('', [Validators.required]),
+      precio: new FormControl('', [Validators.required, Validators.min(0)]),
       typeID: new FormControl('', [Validators.required]),
     });
   }
@@ -112,10 +112,6 @@ export class ModalProductosComponent implements OnInit {
           showNotifyError('Error al crear producto');
         }
       );
-  }
-
-  getTypeSex(type: string): string {
-    return type === 'man' ? 'Caballero' : 'Dama';
   }
 
   seleccionarImagen(event: any) {

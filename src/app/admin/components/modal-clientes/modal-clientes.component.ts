@@ -26,8 +26,8 @@ export class ModalClientesComponent implements OnInit {
     }
   ) {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i), Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
       isAdmin: new FormControl('', []),
     });

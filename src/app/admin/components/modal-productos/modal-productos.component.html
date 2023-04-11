@@ -17,12 +17,15 @@
                         <div class="col-xs-12 mb-4" color="accent" appearance="outline">
                             <!-- <label for="formFile" class="form-label">Imagen del producto</label> -->
                             <div class="col-xs-12 d-flex justify-content-center mb-3 container-image">
-                                <img *ngIf="data.isNew" src="../../../../assets/resources/default.png" #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
-                                <img *ngIf="!data.isNew" src="{{urlImage}}/{{imageName}}" #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
+                                <img *ngIf="data.isNew" src="../../../../assets/resources/default.png"
+                                    #imagenPrevisualizacion class="img-fluid" alt="Imagen del producto">
+                                <img *ngIf="!data.isNew" src="{{urlImage}}/{{imageName}}" #imagenPrevisualizacion
+                                    class="img-fluid" alt="Imagen del producto">
                             </div>
-                            <input class="form-control" type="file" accept="image/*" (change)="seleccionarImagen($event)">
+                            <input class="form-control" type="file" accept="image/*"
+                                (change)="seleccionarImagen($event)">
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -30,25 +33,39 @@
                         <mat-form-field class="col-xs-12" color="accent" appearance="outline">
                             <mat-label>Nombre del producto</mat-label>
                             <input matInput type="text" placeholder="Nombre del producto" formControlName="title" />
+                            <mat-error *ngIf="form.controls['title'].errors?.['required']">Campo
+                                requerido</mat-error>
                         </mat-form-field>
                         <mat-form-field class="col-xs-12" color="accent" appearance="outline">
                             <mat-label>Descripción</mat-label>
                             <textarea rows="5" matInput type="text" placeholder="Descripción del producto"
                                 formControlName="description"></textarea>
+                            <mat-error *ngIf="form.controls['description'].errors?.['required']">Campo
+                                requerido</mat-error>
                         </mat-form-field>
-                        <mat-form-field class="col-md-4" color="accent" appearance="outline">
+                        <mat-form-field class="col-md-5" color="accent" appearance="outline">
                             <mat-label>Precio</mat-label>
-                            <input matInput type="number" placeholder="Precio del producto" formControlName="precio" />
+                            <input matInput type="number" min="0" placeholder="Precio del producto"
+                                formControlName="precio" />
+                            <mat-error *ngIf="form.controls['precio'].errors?.['required']">Campo
+                                requerido</mat-error>
+                            <mat-error *ngIf="form.controls['precio'].errors?.['min']">No debe ser
+                                negativo</mat-error>
                         </mat-form-field>
-                        <mat-form-field class="col-md-8" color="accent" appearance="outline">
+                        <mat-form-field class="col-md-7" color="accent" appearance="outline">
                             <mat-label>Marca</mat-label>
                             <input matInput type="text" placeholder="Marca" formControlName="marca" />
+                            <mat-error *ngIf="form.controls['marca'].errors?.['required']">Campo
+                                requerido</mat-error>
                         </mat-form-field>
                         <mat-form-field class="col-md-12" color="accent" appearance="outline">
                             <mat-label>Tipo de licor</mat-label>
                             <mat-select formControlName="typeID">
-                                <mat-option *ngFor="let type of objTypes" [value]="type._id.$oid">{{type.name}}</mat-option>
+                                <mat-option *ngFor="let type of objTypes"
+                                    [value]="type._id.$oid">{{type.name}}</mat-option>
                             </mat-select>
+                            <mat-error *ngIf="form.controls['typeID'].errors?.['required']">Campo
+                                requerido</mat-error>
                         </mat-form-field>
                     </div>
                 </div>

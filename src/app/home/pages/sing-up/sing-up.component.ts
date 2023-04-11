@@ -22,7 +22,7 @@ export class SingUpComponent implements OnInit {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       name: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i), Validators.minLength(3)]),
-      edad: new FormControl('', [Validators.required, Validators.min(18), Validators.max(100)]),
+      edad: new FormControl('', [Validators.required, Validators.min(18), Validators.max(80)]),
       apellido: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i), Validators.minLength(3)]),
       password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{7,}')]),
       password2: new FormControl('', [Validators.required]),

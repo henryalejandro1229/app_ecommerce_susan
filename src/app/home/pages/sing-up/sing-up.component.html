@@ -19,9 +19,12 @@
                                             <mat-label>Nombre</mat-label>
                                             <input matInput formControlName="name" placeholder="Ingrese su nombre"
                                                 type="text" />
-                                                <mat-error *ngIf="form.controls['name'].errors?.['required']">Campo requerido</mat-error>
-                                                <mat-error *ngIf="form.controls['name'].errors?.['minLength']">El nombre debe contener al menos 3 caracteres</mat-error>
-                                                <mat-error *ngIf="form.controls['name'].errors?.['pattern']">El nombre debe contener solo letras</mat-error>
+                                            <mat-error *ngIf="form.controls['name'].errors?.['required']">Campo
+                                                requerido</mat-error>
+                                            <mat-error *ngIf="form.controls['name'].errors?.['minLength']">El nombre
+                                                debe contener al menos 3 caracteres</mat-error>
+                                            <mat-error *ngIf="form.controls['name'].errors?.['pattern']">El nombre debe
+                                                contener solo letras</mat-error>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-7">
@@ -29,19 +32,24 @@
                                             <mat-label>Apellidos</mat-label>
                                             <input matInput formControlName="apellido"
                                                 placeholder="Ingrese sus apellidos" type="text" />
-                                                <mat-error *ngIf="form.controls['apellido'].errors?.['required']">Campo requerido</mat-error>
-                                                <mat-error *ngIf="form.controls['apellido'].errors?.['minLength']">El apellido debe contener al menos 3 caracteres</mat-error>
-                                                <mat-error *ngIf="form.controls['apellido'].errors?.['pattern']">El apellido debe contener solo letras</mat-error>
+                                            <mat-error *ngIf="form.controls['apellido'].errors?.['required']">Campo
+                                                requerido</mat-error>
+                                            <mat-error *ngIf="form.controls['apellido'].errors?.['minLength']">El
+                                                apellido debe contener al menos 3 caracteres</mat-error>
+                                            <mat-error *ngIf="form.controls['apellido'].errors?.['pattern']">El apellido
+                                                debe contener solo letras</mat-error>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-3">
                                         <mat-form-field appearance="outline" color="accent" class="form-full">
                                             <mat-label>Edad</mat-label>
-                                            <input matInput formControlName="edad" min="0" placeholder="Edad" type="number" />
+                                            <input matInput formControlName="edad" min="0" placeholder="Edad"
+                                                type="number" />
                                             <mat-error *ngIf="form.controls['edad'].errors?.['required']">Campo
                                                 requerido</mat-error>
                                             <mat-error *ngIf="form.controls['edad'].errors?.['min']">Debe ser mayor de
                                                 edad</mat-error>
+                                            <mat-error *ngIf="form.controls['edad'].errors?.['max']">Máximo de edad superado</mat-error>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-9">
@@ -49,9 +57,10 @@
                                             <mat-label>Correo electrónico</mat-label>
                                             <input matInput formControlName="email"
                                                 placeholder="Ingrese su correo electrónico" type="email" />
-                                            <mat-error *ngIf="form.controls['email'].errors?.['email']">Ingrese un correo
-                                                electrónico válido</mat-error>
-                                            <mat-error *ngIf="form.controls['email'].errors?.['required']">Campo requerido</mat-error>
+                                            <mat-error *ngIf="form.controls['email'].errors?.['email']">Ingrese un
+                                                correo electrónico válido</mat-error>
+                                            <mat-error *ngIf="form.controls['email'].errors?.['required']">Campo
+                                                requerido</mat-error>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
@@ -64,8 +73,11 @@
                                                 [color]="clear ? 'accent' : ''">
                                                 {{ clear ? "visibility" : "visibility_off" }}
                                             </mat-icon>
-                                            <mat-error *ngIf="form.controls['password'].errors?.['required']">Campo requerido</mat-error>
-                                            <mat-error *ngIf="form.controls['password'].errors?.['pattern']">La contraseña debe contener al menos 8 caracteres, 1 mayúscula y 1 minúscula</mat-error>
+                                            <mat-error *ngIf="form.controls['password'].errors?.['required']">Campo
+                                                requerido</mat-error>
+                                            <mat-error *ngIf="form.controls['password'].errors?.['pattern']">La
+                                                contraseña debe contener al menos 8 caracteres, una mayúscula, una
+                                                minúscula y un número</mat-error>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
@@ -78,11 +90,12 @@
                                                 [color]="clearConfirm ? 'accent' : ''">
                                                 {{ clearConfirm ? "visibility" : "visibility_off" }}
                                             </mat-icon>
-                                            <mat-error *ngIf="form.controls['password2'].errors?.['required']">Campo requerido</mat-error>
+                                            <mat-error *ngIf="form.controls['password2'].errors?.['required']">Campo
+                                                requerido</mat-error>
                                         </mat-form-field>
                                     </div>
                                 </div>
-                                <div class="alert alert-danger col-md-12" role="alert"
+                                <div class="alert alert-danger col-md-12 mt-3" role="alert"
                                     *ngIf="!pwdsCoinciden && pwdsValue">
                                     Las contraseñas no coinciden!
                                 </div>

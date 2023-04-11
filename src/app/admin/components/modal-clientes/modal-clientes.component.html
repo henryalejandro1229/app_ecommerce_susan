@@ -23,14 +23,26 @@
                 <mat-form-field class="col-xs-12" color="accent" appearance="outline">
                     <mat-label>Nombre</mat-label>
                     <input matInput type="text" placeholder="Nombre" formControlName="name" />
+                    <mat-error *ngIf="form.controls['name'].errors?.['required']">Campo
+                        requerido</mat-error>
+                    <mat-error *ngIf="form.controls['name'].errors?.['minLength']">El nombre
+                        debe contener al menos 3 caracteres</mat-error>
+                    <mat-error *ngIf="form.controls['name'].errors?.['pattern']">El nombre debe
+                        contener solo letras</mat-error>
                 </mat-form-field>
                 <mat-form-field class="col-xs-12" color="accent" appearance="outline">
                     <mat-label>Correo electrónico</mat-label>
                     <input matInput type="text" placeholder="Correo electrónico" formControlName="email" />
+                    <mat-error *ngIf="form.controls['email'].errors?.['required']">Campo
+                        requerido</mat-error>
+                    <mat-error *ngIf="form.controls['email'].errors?.['email']">Ingrese un
+                        correo electrónico válido</mat-error>
                 </mat-form-field>
                 <mat-form-field class="col-xs-12" color="accent" appearance="outline">
                     <mat-label>Contraseña</mat-label>
                     <input matInput type="text" placeholder="Contraseña" formControlName="password" />
+                    <mat-error *ngIf="form.controls['password'].errors?.['required']">Campo
+                        requerido</mat-error>
                 </mat-form-field>
                 <mat-slide-toggle formControlName="isAdmin">Es administrador</mat-slide-toggle>
             </div>
