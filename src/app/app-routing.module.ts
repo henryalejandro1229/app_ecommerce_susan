@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNoFoundComponent } from './shared/page-no-found/page-no-found.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
       import('./admin/admin.module').then((mod) => mod.AdminModule),
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  // { path: '**', component: PageNoFoundComponent },
+  { path: '**', component: PageNoFoundComponent },
 ];
 
 @NgModule({
