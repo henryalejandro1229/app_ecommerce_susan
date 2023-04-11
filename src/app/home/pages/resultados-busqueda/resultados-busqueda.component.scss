@@ -76,21 +76,22 @@
     background-color: $pry-yellow;
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label*/
-  color: rgb(35, 35, 35) !important;
- }
+// ::ng-deep .mat-focused .mat-form-field-label {
+
+//   /*change color of label*/
+//   color: rgb(35, 35, 35) !important;
+//  }
 
  ::ng-deep.mat-form-field-underline {
   /*change color of underline*/
-  background-color: #d4d4d4 !important;
+  background-color: #B0BEC5 !important;
 } 
 
-::ng-deep.mat-form-field-ripple {
- /*change color of underline when focused*/
- background-color: $pry-yellow !important;
-}
+// ::ng-deep.mat-form-field-ripple {
+//  /*change color of underline when focused*/
+//  background-color: $pry-yellow !important;
+// }
 
 ::ng-deep .mat-form-field-label{
-  color:#656565 !important;
+  color:#B0BEC5 !important;
 }

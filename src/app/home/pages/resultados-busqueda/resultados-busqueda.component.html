@@ -10,17 +10,17 @@
             <div class="col-md-3 g-4 pb-4 py-4 rounded">
                 <h2 class="fw-light"><b>Filtrar por precio</b></h2>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="row">
-                            <mat-form-field class="col-md-5">
+                            <mat-form-field class="col-5" color="accent">
                                 <mat-label>Mínimo</mat-label>
                                 <input matInput [(ngModel)]="min" min="0" type="number" (change)="validaFiltroPrecio()">
                             </mat-form-field>
-                            <mat-form-field class="col-md-5">
+                            <mat-form-field class="col-5" color="accent">
                                 <mat-label>Máximo</mat-label>
                                 <input matInput [(ngModel)]="max" min="0" type="number" (change)="validaFiltroPrecio()">
                             </mat-form-field>
-                            <button class="col-md-2 bg-light" matTooltip="Aplicar" (click)="aplicarFiltroPrecio()" mat-icon-button [disabled]="priceError">
+                            <button class="col-2 bg-light" matTooltip="Aplicar" (click)="aplicarFiltroPrecio()" mat-icon-button [disabled]="priceError">
                                 <mat-icon color="accent">search</mat-icon>
                             </button>
                         </div>
@@ -32,15 +32,18 @@
 
                 <h2 class="fw-light pt-3"><b>Filtrar por tipo de licor</b></h2>
                 <mat-radio-group [(ngModel)]="typeSelectID" (change)="filterType()">
+                    <mat-radio-button class="d-block p-2" [value]="'0'" >
+                        Ninguno
+                    </mat-radio-button>
                     <mat-radio-button class="d-block p-2" *ngFor="let type of objTypes" [value]="type._id.$oid" >
                         {{type.name}}
                     </mat-radio-button>
                 </mat-radio-group>
             </div>
-            <div class="row g-4 pb-4 col-md-9">
-                <div class="col" *ngFor="let prod of objProductos">
+            <div class="row g-4 col-md-9">
+                <div class="col-md-12 col-sm-12 col-lg-6" *ngFor="let prod of objProductos">
                     <div class="card hover-shadow">
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                             <div class="row">
                                 <div class="col-md-4 py-4">
                                     <div class="container-image">
@@ -48,7 +51,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 p-4">
-                                    <p class="h4 fw-light text-truncate">
+                                    <p class="h5 fw-light text-truncate">
+                                        <b>{{prod.title}}</b>
+                                    </p>
+                                    <p class="h6 fw-light text-truncate" [matTooltip]="prod.description">
                                         {{prod.description}}
                                     </p>
                                     <p class="h7 fw-light">{{prod.marca}}</p>
