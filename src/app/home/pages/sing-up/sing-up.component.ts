@@ -42,8 +42,6 @@ export class SingUpComponent implements OnInit {
       .singup(this.form.value.email, this.form.value.name, this.form.value.apellido, this.form.value.edad, this.form.value.password)
       .subscribe(
         (res) => {
-          showNotifySuccess('Registro completado, para continuar confirme su cuenta con el link que fue enviado a su correo');
-          this._route.navigate(['/home']);
           this.validateEmail(true);
         },
         (e) => {
@@ -76,8 +74,6 @@ export class SingUpComponent implements OnInit {
   }
 
   sendEmail(email: string, id: string): void {
-    console.log('sendemail');
-    
     this._hs.sendValidateEmail(email, id).subscribe(
       (res: any) => {
         showSwalSuccess(
@@ -92,7 +88,6 @@ export class SingUpComponent implements OnInit {
   }
 
   validaPwds(): void {
-    console.log(this.form.value.password);
     if (this.form.value.password && this.form.value.password2) {
       this.pwdsValue = true;
       this.pwdsCoinciden =
@@ -101,6 +96,5 @@ export class SingUpComponent implements OnInit {
     }
     this.pwdsCoinciden = false;
     this.pwdsValue = false;
-    console.log(this.pwdsCoinciden);
   }
 }
