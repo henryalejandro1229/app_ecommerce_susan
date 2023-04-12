@@ -7,7 +7,7 @@
             <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #matPryMenuPublic="matMenu">
-            <div>
+            <div *ngIf="!_auth.isAdmin">
                 <button class="nav-link text-white" mat-menu-item (click)="routerLink('/home')">
                     INICIO
                 </button>
@@ -19,7 +19,8 @@
                     <button mat-menu-item *ngFor="let tipo of objTipos"
                         (click)="verTipo(tipo)"><mat-icon>radio_button_unchecked</mat-icon>{{tipo.name}}</button>
                 </mat-menu>
-                <button class="nav-link text-white" *ngIf="_auth.isAuth" mat-menu-item (click)="routerLink('/home/mis-compras')">
+                <button class="nav-link text-white" *ngIf="_auth.isAuth" mat-menu-item
+                    (click)="routerLink('/home/mis-compras')">
                     MIS COMPRAS
                 </button>
                 <button mat-menu-item class="nav-link text-white" [matMenuTriggerFor]="matMenuAboutResp">
@@ -29,10 +30,25 @@
                     <button class="text-white" mat-menu-item (click)="routerLink('/home/aviso-privacidad')">AVISO DE
                         PRIVACIDAD</button>
                     <button mat-menu-item (click)="routerLink('/home/mision-vision')">MISIÓN Y VISIÓN</button>
-                    <button mat-menu-item (click)="routerLink('/home/preguntas-frecuentes')">PREGUNTAS FRECUENTES</button>
+                    <button mat-menu-item (click)="routerLink('/home/preguntas-frecuentes')">PREGUNTAS
+                        FRECUENTES</button>
                 </mat-menu>
                 <button class="nav-link text-white" mat-menu-item (click)="routerLink('/pedidos')">
                     PEDIDOS
+                </button>
+            </div>
+            <div *ngIf="_auth.isAdmin">
+                <button mat-menu-item (click)="routerLink('/admin')">
+                    DASHBOARD
+                </button>
+                <button mat-menu-item (click)="routerLink('/admin/clientes')">
+                    CLIENTES
+                </button>
+                <button mat-menu-item (click)="routerLink('/admin/productos')">
+                    PRODUCTOS
+                </button>
+                <button mat-menu-item (click)="routerLink('/admin/tipos')">
+                    TIPOS DE LICOR
                 </button>
             </div>
         </mat-menu>
@@ -65,7 +81,8 @@
                         <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
                     </button>
                     <mat-menu #matMenuAbout="matMenu">
-                        <button mat-menu-item (click)="routerLink('/home/aviso-privacidad')">AVISO DE PRIVACIDAD</button>
+                        <button mat-menu-item (click)="routerLink('/home/aviso-privacidad')">AVISO DE
+                            PRIVACIDAD</button>
                         <button mat-menu-item (click)="routerLink('/home/mision-vision')">MISIÓN Y VISIÓN</button>
                         <button mat-menu-item (click)="routerLink('/home/preguntas-frecuentes')">
                             PREGUNTAS FRECUENTES
