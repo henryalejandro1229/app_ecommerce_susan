@@ -21,7 +21,7 @@ const routes: Routes = [
     data: { breadcrumb: 'Verificar correo'},
     component: VerificarEmailComponent
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNoFoundComponent },
 ];
 

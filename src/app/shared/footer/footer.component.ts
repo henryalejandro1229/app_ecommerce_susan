@@ -8,15 +8,8 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(
-    private router: Router
-    ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-  public routerLink(path: string): void {
-    this.router.navigate([path]);
-  }
-
 }

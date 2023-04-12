@@ -10,6 +10,7 @@ import { CarruselComponent } from './carrusel/carrusel.component';
 import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { VerificarEmailComponent } from './verificar-email/verificar-email.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -29,6 +30,7 @@ import { VerificarEmailComponent } from './verificar-email/verificar-email.compo
     FormsModule,
     HttpClientModule,
     BreadcrumbModule,
+    RouterModule
   ],
   exports: [
     MaterialModule,
