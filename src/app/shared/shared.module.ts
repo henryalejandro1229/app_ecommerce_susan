@@ -9,6 +9,7 @@ import { BreadcrumbModule } from 'angular-crumbs';
 import { CarruselComponent } from './carrusel/carrusel.component';
 import { PageNoFoundComponent } from './page-no-found/page-no-found.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
+import { VerificarEmailComponent } from './verificar-email/verificar-email.component';
 
 
 
@@ -19,6 +20,7 @@ import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
     CarruselComponent,
     PageNoFoundComponent,
     NavbarAdminComponent,
+    VerificarEmailComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
     CarruselComponent,
     PageNoFoundComponent,
     NavbarAdminComponent,
+    VerificarEmailComponent,
   ],
 })
 export class SharedModule { }

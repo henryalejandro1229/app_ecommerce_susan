@@ -2,6 +2,8 @@ export interface ClienteModelo {
   _id: any;
   email: string;
   name: string;
+  apellido: string;
+  edad: string;
   password: string;
   isAdmin: boolean;
 }
