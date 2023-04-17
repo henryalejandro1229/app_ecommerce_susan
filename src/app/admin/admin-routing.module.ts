@@ -27,7 +27,7 @@ const routes: Routes = [
       },
       {
         path: 'tipos',
-        data: { breadcrumb: 'Tipos' },
+        data: { breadcrumb: 'Sabores' },
         component: TiposComponent,
       },
     ],

@@ -64,4 +64,12 @@ export class InicioComponent implements OnInit {
   verTipo(type: TypeModelo) {
     this.router.navigate(['/home/list-product'], {queryParams: {'ID': type._id.$oid}});
   }
+
+  verProducto(producto: ProductoModelo) {
+    this.router.navigate(['home/detalle-producto'], {queryParams: {ID : producto._id.$oid}});
+  }
+
+  verProductos(){
+    this.router.navigate(['home/resultados-busqueda'], {queryParams: {search : ''}});
+  }
 }

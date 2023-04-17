@@ -2,14 +2,11 @@
 <div class="container">
   <div class="py-4">
     <p class="h5 col-md-12 text-right fw-bold py-2">
-      Conoce nuestra variedad de licores
+      Conoce nuestra variedad de sabores
     </p>
     <div class="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-6 g-4 pb-4">
       <div class="col" *ngFor="let tipo of objTipos">
-        <div class="card h-100 hover-shadow" (click)="verTipo(tipo)" matTooltip="Ver">
-          <div class="container-image-types border-bottom">
-            <img src="{{urlImage}}/{{tipo.imageUrl}}">
-          </div>
+        <div class="card h-100 hover-shadow" (click)="verTipo(tipo)" matTooltip="Ver productos de este sabor">
           <div class="card-body">
             <p class="h6 text-center fw-light text-truncate"><b>{{tipo.name}}</b></p>
           </div>
@@ -29,11 +26,11 @@
       <p class="h5 fw-bold">
         Productos destacados
       </p>
-      <button class="btn btn-link">Ver más productos...</button>
+      <button class="btn btn-link" (click)="verProductos();">Ver más productos...</button>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 pb-4">
       <div class="col" *ngFor="let prod of objProducts">
-        <div class="card h-100 hover-shadow">
+        <div class="card h-100 hover-shadow" (click)="verProducto(prod)" matTooltip="Ver producto">
           <div class="container-image border-bottom">
             <img src="{{urlImage}}/{{prod.imageUrl}}">
           </div>

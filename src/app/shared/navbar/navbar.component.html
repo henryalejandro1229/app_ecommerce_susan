@@ -13,7 +13,7 @@
                 </button>
 
                 <button mat-menu-item class="nav-link text-white" [matMenuTriggerFor]="matMenuLicoresResp">
-                    LICORES
+                    SABORES
                 </button>
                 <mat-menu #matMenuLicoresResp="matMenu">
                     <button mat-menu-item *ngFor="let tipo of objTipos"
@@ -48,7 +48,7 @@
                     PRODUCTOS
                 </button>
                 <button mat-menu-item (click)="routerLink('/admin/tipos')">
-                    TIPOS DE LICOR
+                    SABORES
                 </button>
             </div>
         </mat-menu>
@@ -62,7 +62,7 @@
                 </button>
                 <li class="nav-item mx-2">
                     <button class="nav-link" mat-button [matMenuTriggerFor]="matMenuLicores">
-                        LICORES
+                        SABORES
                         <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
                     </button>
                     <mat-menu #matMenuLicores="matMenu">
@@ -109,7 +109,7 @@
                     PRODUCTOS
                 </button>
                 <button mat-button (click)="routerLink('/admin/tipos')">
-                    TIPOS DE LICOR
+                    SABORES
                 </button>
             </ul>
             <div class="d-flex align-items-center">

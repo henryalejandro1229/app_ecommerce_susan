@@ -30,7 +30,7 @@
                     </div>
                 </div>
 
-                <h2 class="fw-light pt-3"><b>Filtrar por tipo de licor</b></h2>
+                <h2 class="fw-light pt-3"><b>Filtrar por sabor</b></h2>
                 <mat-radio-group [(ngModel)]="typeSelectID" (change)="filterType()">
                     <mat-radio-button class="d-block p-2" [value]="'0'" >
                         Ninguno
@@ -58,7 +58,7 @@
                                         {{prod.description}}
                                     </p>
                                     <p class="h7 fw-light">{{prod.marca}}</p>
-                                    <p class="h6 fw-light">Tipo de licor: <b>{{getType(prod.typeID)}}</b></p>
+                                    <p class="h6 fw-light">Sabor: <b>{{getType(prod.typeID)}}</b></p>
                                     <p class="h3">
                                         <b class="text-muted fst-normal txt-yellow">$ {{prod.precio}}</b>
                                     </p>

@@ -1,12 +1,12 @@
 <div class="container-fluid p-4">
     <div class="py-1">
-        <div class="d-flex justify-content-between"><b class="h3">Tipos de licor disponibles</b>
+        <div class="d-flex justify-content-between"><b class="h3">Sabores disponibles</b>
             <button mat-raised-button class="k-btn-pry-yellow" (click)="openModal(true)">
                 <mat-icon>add</mat-icon>
-                Agregar tipo de licor
+                Agregar nuevo sabor
             </button>
         </div>
-        <p class="h6 fw-light">Listado de tipos de licor disponibles</p>
+        <p class="h6 fw-light">Listado de sabores disponibles</p>
     </div>
     <div class="py-4">
         <mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
@@ -26,11 +26,11 @@
             <ng-container matColumnDef="options">
                 <th mat-header-cell class="text-center" *matHeaderCellDef> Opciones </th>
                 <td mat-cell class="text-center" *matCellDef="let element">
-                    <button mat-icon-button class="icon-pry-yellow" matTooltip="Editar tipo de licor"
+                    <button mat-icon-button class="icon-pry-yellow" matTooltip="Editar sabor"
                         (click)="openModal(false , element)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button color="warn" matTooltip="Eliminar tipo de licor" (click)="deleteType(element)">
+                    <button mat-icon-button color="warn" matTooltip="Eliminar sabor" (click)="deleteType(element)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>

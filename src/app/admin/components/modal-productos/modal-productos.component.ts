@@ -22,6 +22,7 @@ export class ModalProductosComponent implements OnInit {
     nombreArchivo: '',
     base64textString: '',
   };
+  objCategoria = ['250 mL', '400 mL', '600 mL', '800 mL', '1 L', '1.2 L', '1.8 L']
   extPermitidas = ['jpg', 'jpeg', 'png'];
   @ViewChild('imagenPrevisualizacion') imagenPrevisualizacion!: ElementRef;
   @ViewChild('inputFile') inputFile!: ElementRef;

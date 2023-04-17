@@ -106,11 +106,10 @@ export class HomeService {
     return this.http.get(`${environment.url}/products/getTypes.php`);
   }
 
-  createType(formData: TypeModelo, imageUrl: string): Observable<any> {
+  createType(formData: TypeModelo): Observable<any> {
     let params = new HttpParams()
       .append('name', formData.name)
-      .append('description', formData.description)
-      .append('imageUrl', imageUrl);
+      .append('description', formData.description);
     return this.http.get(`${environment.url}/products/createType.php`, {
       params,
     });
@@ -118,14 +117,12 @@ export class HomeService {
 
   updateType(
     id: string,
-    formData: TypeModelo,
-    imageUrl: string
+    formData: TypeModelo
   ): Observable<any> {
     let params = new HttpParams()
       .append('id', id)
       .append('name', formData.name)
-      .append('description', formData.description)
-      .append('imageUrl', imageUrl);
+      .append('description', formData.description);
     return this.http.get(`${environment.url}/products/updateType.php`, {
       params,
     });

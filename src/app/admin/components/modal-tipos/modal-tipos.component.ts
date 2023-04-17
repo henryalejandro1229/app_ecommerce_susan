@@ -17,10 +17,6 @@ export class ModalTiposComponent implements OnInit {
   imageName = '';
   form!: FormGroup;
   id!: string;
-  objImagen: ImagenModelo = {
-    nombreArchivo: '',
-    base64textString: '',
-  };
   extPermitidas = ['jpg', 'jpeg', 'png'];
   @ViewChild('imagenPrevisualizacion') imagenPrevisualizacion!: ElementRef;
   @ViewChild('inputFile') inputFile!: ElementRef;
@@ -61,17 +57,13 @@ export class ModalTiposComponent implements OnInit {
     this._hs
       .updateType(
         this.id,
-        this.form.getRawValue(),
-        this.objImagen.nombreArchivo.length
-          ? this.objImagen.nombreArchivo
-          : this.imageName
+        this.form.getRawValue()
       )
       .subscribe(
         (res: any) => {
           showNotifySuccess(
             'Tipo de licor actualizado'
           );
-          if (this.objImagen.nombreArchivo.length > 0) this.uploadImage();
         },
         (e) => {
           showNotifyError('Error al actualizar');
@@ -81,57 +73,16 @@ export class ModalTiposComponent implements OnInit {
 
   createCategory(): void {
     this._hs
-      .createType(this.form.getRawValue(), this.objImagen.nombreArchivo)
+      .createType(this.form.getRawValue())
       .subscribe(
         (res: any) => {
           showNotifySuccess(
             'Tipo de licor creado',
           );
-          if (this.objImagen.nombreArchivo.length > 0) this.uploadImage();
         },
         (e) => {
           showNotifyError('Error al crear tipo de licor');
         }
       );
-  }
-
-  getFileExtension(filename: string) {
-    return filename.split('.').pop();
-  }
-
-  seleccionarImagen(event: any) {
-    const files = event.target.files;
-    const file = files[0];
-    const ext = this.getFileExtension(file.name);
-    if (ext && !(this.extPermitidas.includes(ext))) {
-      showSwalWarning('Formato de archivo no valido', 'Solo se admiten imagenes con formato .jpg, .jpeg, .png');
-      this.inputFile.nativeElement.value = "";
-      return;
-    }
-
-    this.objImagen.nombreArchivo = file.name;
-    const objectURL = URL.createObjectURL(file);
-    this.imagenPrevisualizacion.nativeElement.src = objectURL;
-
-    if (files && file) {
-      var reader = new FileReader();
-      reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(file);
-    }
-  }
-
-  _handleReaderLoaded(readerEvent: any) {
-    var binaryString = readerEvent.target.result;
-    this.objImagen.base64textString = btoa(binaryString);
-  }
-
-  uploadImage() {
-    console.log(this.objImagen);
-    this._hs.uploadFile(this.objImagen).subscribe(
-      (datos) => {},
-      (e) => {
-        showNotifyError('Error al subir imagen');
-      }
-    );
   }
 }

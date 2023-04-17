@@ -44,7 +44,7 @@ export class TiposComponent implements OnInit {
     this.matDialog
       .open(ModalTiposComponent, {
         panelClass: 'sinpadding',
-        width: '800px',
+        width: '600px',
         height: 'auto',
         data: {
           isNew,
@@ -60,19 +60,19 @@ export class TiposComponent implements OnInit {
 
   deleteType(categoria: TypeModelo) {
     showModalConfirmation(
-      'Eliminar tipo de licor',
-      '¿Seguro que deseas eliminar este tipo de licor?'
+      'Eliminar sabor',
+      '¿Seguro que deseas eliminar este sabor?'
     ).then((res) => {
       if (res.isConfirmed) {
         this.loading = true;
         this._hs.deleteType(categoria._id.$oid).subscribe(
           (res) => {
-            showNotifySuccess('Tipo de licor eliminada');
+            showNotifySuccess('sabor eliminado');
             this.consultaInfo();
             this.loading = false;
           },
           (e) => {
-            showNotifyError('Error al eliminar la tipo de licor');
+            showNotifyError('Error al eliminar el sabor');
             this.loading = false;
           }
         );
