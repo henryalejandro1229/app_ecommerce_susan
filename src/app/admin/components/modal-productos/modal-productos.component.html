@@ -22,7 +22,7 @@
                                 <img *ngIf="!data.isNew" src="{{urlImage}}/{{imageName}}" #imagenPrevisualizacion
                                     class="img-fluid" alt="Imagen del producto">
                             </div>
-                            <input class="form-control" type="file" accept="image/*"
+                            <input class="form-control" #inputFile type="file" accept="image/*"
                                 (change)="seleccionarImagen($event)">
                         </div>
 
@@ -75,7 +75,7 @@
     </section>
 
     <section class="footer">
-        <button [disabled]="form.invalid" mat-raised-button class="k-btn-pry-yellow" (click)="submit()">
+        <button [disabled]="form.invalid || data.isNew && objImagen.nombreArchivo.length === 0" mat-raised-button class="k-btn-pry-yellow" (click)="submit()">
             <mat-icon>{{data.isNew ? 'add': 'edit'}}</mat-icon>
             {{data.isNew ? 'Crear': 'Actualizar'}} producto</button>
     </section>

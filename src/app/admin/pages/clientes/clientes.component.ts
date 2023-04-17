@@ -16,7 +16,6 @@ export class ClientesComponent implements OnInit {
     'position',
     'name',
     'email',
-    'password',
     'isAdmin',
     'options',
   ];

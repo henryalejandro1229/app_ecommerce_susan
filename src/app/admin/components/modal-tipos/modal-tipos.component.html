@@ -20,7 +20,7 @@
                             <img *ngIf="!data.isNew" src="{{urlImage}}/{{imageName}}" #imagenPrevisualizacion
                                 class="img-fluid" alt="Imagen del tipo de licor">
                         </div>
-                        <input class="form-control" type="file" accept="image/*" (change)="seleccionarImagen($event)">
+                        <input class="form-control" #inputFile type="file" accept="image/*" (change)="seleccionarImagen($event)">
                     </div>
                 </div>
                 <div class="col-md-7">
@@ -50,7 +50,7 @@
     </section>
 
     <section class="footer">
-        <button [disabled]="form.invalid" mat-raised-button class="k-btn-pry-yellow" (click)="submit()">
+        <button [disabled]="form.invalid || data.isNew && objImagen.nombreArchivo.length === 0" mat-raised-button class="k-btn-pry-yellow" (click)="submit()">
             <mat-icon>{{data.isNew ? 'add': 'edit'}}</mat-icon>
             {{data.isNew ? 'Crear': 'Actualizar'}} tipo de licor</button>
     </section>
