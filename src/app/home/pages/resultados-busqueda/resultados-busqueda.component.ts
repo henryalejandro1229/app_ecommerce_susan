@@ -128,4 +128,8 @@ export class ResultadosBusquedaComponent implements OnInit {
       },
     });
   }
+
+  verProducto(producto: ProductoModelo) {
+    this.router.navigate(['home/detalle-producto'], {queryParams: {ID : producto._id.$oid}});
+  }
 }
