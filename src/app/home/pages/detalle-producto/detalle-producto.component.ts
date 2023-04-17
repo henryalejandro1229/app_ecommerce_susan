@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
 import { ProductoModelo, TypeModelo } from '../../models/home.modelo';
+import { combineLatest } from 'rxjs';
 import { showNotifyError } from 'src/app/shared/functions/Utilities';
 
 @Component({
-  selector: 'app-list-products',
-  templateUrl: './list-products.component.html',
-  styleUrls: ['./list-products.component.scss']
+  selector: 'app-detalle-producto',
+  templateUrl: './detalle-producto.component.html',
+  styleUrls: ['./detalle-producto.component.scss']
 })
-export class ListProductsComponent implements OnInit {
+export class DetalleProductoComponent implements OnInit {
+
   urlImage = environment.urlImg;
-  objType!: TypeModelo;
-  objProductos!: ProductoModelo[];
+  objTypes!: TypeModelo[];
+  objProducto!: ProductoModelo;
   loading = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private _hs: HomeService,
-    private route: Router
+    private _hs: HomeService
   ) { }
 
   ngOnInit(): void {
@@ -30,16 +30,16 @@ export class ListProductsComponent implements OnInit {
       }
     });
   }
-  
+
   consultaInfo(id: string): void {
     this.loading = true;
     combineLatest(
-      this._hs.getType(id),
-      this._hs.getProductsPerType(id)
+      this._hs.getProduct(id),
+      this._hs.getTypes()
     ).subscribe(
       (res) => {
-        this.objType = res[0][0];
-        this.objProductos = res[1];
+        this.objProducto = res[0][0];
+        this.objTypes = res[1];
         this.loading = false;
       },
       (e) => {
@@ -47,9 +47,5 @@ export class ListProductsComponent implements OnInit {
         showNotifyError('Error consultar información');
       }
     );
-  }
-
-  verProducto(producto: ProductoModelo) {
-    this.route.navigate(['home/detalle-producto'], {queryParams: {ID : producto._id.$oid}});
   }
 }

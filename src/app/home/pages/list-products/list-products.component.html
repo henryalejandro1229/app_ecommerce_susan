@@ -6,7 +6,7 @@
     <mat-divider></mat-divider>
     <div class="py-4" *ngIf="objProductos || !loading">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 pb-4">
-            <div class="col" *ngFor="let prod of objProductos">
+            <div class="col" (click)="verProducto(prod)" matTooltip="Ver producto" *ngFor="let prod of objProductos">
                 <div class="card h-100 hover-shadow">
                     <div class="container-image border-bottom">
                         <img src="{{urlImage}}/{{prod.imageUrl}}">

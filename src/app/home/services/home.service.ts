@@ -135,6 +135,10 @@ export class HomeService {
     return this.http.get(`${environment.url}/products/deleteType.php?id=${id}`);
   }
 
+  getProduct(id: string): Observable<any> {
+    return this.http.get(`${environment.url}/products/getProduct.php?id=${id}`);
+  }
+
   getProducts(): Observable<any> {
     return this.http.get(`${environment.url}/products/getProducts.php`);
   }

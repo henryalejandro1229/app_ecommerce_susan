@@ -13,6 +13,7 @@ import { MisionVisionComponent } from './pages/mision-vision/mision-vision.compo
 import { AvisoPrivacidadComponent } from './pages/aviso-privacidad/aviso-privacidad.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
+import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,11 @@ const routes: Routes = [
         path: 'resultados-busqueda',
         data: { breadcrumb: 'Resultados de búsqueda' },
         component: ResultadosBusquedaComponent,
+      },
+      {
+        path: 'detalle-producto',
+        data: { breadcrumb: 'Detalle del producto' },
+        component: DetalleProductoComponent,
       },
     ],
   },
