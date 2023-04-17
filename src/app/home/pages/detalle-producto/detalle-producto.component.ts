@@ -17,6 +17,7 @@ export class DetalleProductoComponent implements OnInit {
   objTypes!: TypeModelo[];
   objProducto!: ProductoModelo;
   loading = false;
+  type!: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -40,6 +41,8 @@ export class DetalleProductoComponent implements OnInit {
       (res) => {
         this.objProducto = res[0][0];
         this.objTypes = res[1];
+        let resp = this.objTypes.find(type => type._id.$oid = this.objProducto.typeID);
+        this.type = resp? resp.name : '';
         this.loading = false;
       },
       (e) => {
