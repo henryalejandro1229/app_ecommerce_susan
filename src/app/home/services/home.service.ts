@@ -93,9 +93,10 @@ export class HomeService {
     txtSearch: string,
     min: number,
     max: number,
-    type: string
+    type: string,
+    category: string
   ): Observable<any> {
-    let params = new HttpParams().append('txtSearch', txtSearch.toLowerCase()).append('typeID', type ? type : '0').append('min', min ? min : -1).append('max', max ? max : -1);
+    let params = new HttpParams().append('txtSearch', txtSearch.toLowerCase()).append('typeID', type ? type : '0').append('min', min ? min : -1).append('max', max ? max : -1).append('category', category ? category : '0');
       params.append('typeID', type);
     return this.http.get(`${environment.url}/products/findProduct.php`, {
       params,

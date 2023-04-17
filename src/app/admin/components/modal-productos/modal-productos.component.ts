@@ -1,18 +1,32 @@
-import { Component, OnInit, Inject, Optional, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  Optional,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ImagenModelo, ProductoModelo, TypeModelo } from 'src/app/home/models/home.modelo';
+import {
+  ImagenModelo,
+  ProductoModelo,
+  TypeModelo,
+} from 'src/app/home/models/home.modelo';
 import { HomeService } from 'src/app/home/services/home.service';
-import { showNotifyError, showNotifySuccess, showSwalWarning } from 'src/app/shared/functions/Utilities';
+import {
+  showNotifyError,
+  showNotifySuccess,
+  showSwalWarning,
+} from 'src/app/shared/functions/Utilities';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-productos',
   templateUrl: './modal-productos.component.html',
-  styleUrls: ['./modal-productos.component.scss']
+  styleUrls: ['./modal-productos.component.scss'],
 })
 export class ModalProductosComponent implements OnInit {
-
   urlImage = environment.urlImg;
   imageName = '';
   form!: FormGroup;
@@ -22,7 +36,19 @@ export class ModalProductosComponent implements OnInit {
     nombreArchivo: '',
     base64textString: '',
   };
-  objCategoria = ['250 mL', '400 mL', '600 mL', '800 mL', '1 L', '1.2 L', '1.8 L']
+  objCategoria = [
+    '120 mL',
+    '210 mL',
+    '500 mL',
+    '600 mL',
+    '700 mL',
+    '750 mL',
+    '900 mL',
+    '1 L',
+    '1.2 L',
+    '1.8 L',
+    '2 L',
+  ];
   extPermitidas = ['jpg', 'jpeg', 'png'];
   @ViewChild('imagenPrevisualizacion') imagenPrevisualizacion!: ElementRef;
   @ViewChild('inputFile') inputFile!: ElementRef;
@@ -38,7 +64,10 @@ export class ModalProductosComponent implements OnInit {
     }
   ) {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i)]),
+      title: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i),
+      ]),
       description: new FormControl('', [Validators.required]),
       marca: new FormControl('', [Validators.required]),
       precio: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -54,9 +83,7 @@ export class ModalProductosComponent implements OnInit {
       this.form.controls['description'].setValue(
         this.data.objProduct.description
       );
-      this.form.controls['typeID'].setValue(
-        this.data.objProduct.typeID
-      );
+      this.form.controls['typeID'].setValue(this.data.objProduct.typeID);
       this.form.controls['marca'].setValue(this.data.objProduct.marca);
       this.form.controls['precio'].setValue(this.data.objProduct.precio);
       this.imageName = this.data.objProduct.imageUrl;
@@ -90,9 +117,7 @@ export class ModalProductosComponent implements OnInit {
       )
       .subscribe(
         (res: any) => {
-          showNotifySuccess(
-            'Producto actualizado'
-          );
+          showNotifySuccess('Producto actualizado');
           if (this.objImagen.nombreArchivo.length > 0) this.uploadImage();
         },
         (e) => {
@@ -106,9 +131,7 @@ export class ModalProductosComponent implements OnInit {
       .createProduct(this.form.getRawValue(), this.objImagen.nombreArchivo)
       .subscribe(
         (res: any) => {
-          showNotifySuccess(
-            'Producto creado'
-          );
+          showNotifySuccess('Producto creado');
           if (this.objImagen.nombreArchivo.length > 0) this.uploadImage();
         },
         (e) => {
@@ -125,9 +148,12 @@ export class ModalProductosComponent implements OnInit {
     const files = event.target.files;
     const file = files[0];
     const ext = this.getFileExtension(file.name);
-    if (ext && !(this.extPermitidas.includes(ext))) {
-      showSwalWarning('Formato de archivo no valido', 'Solo se admiten imagenes con formato .jpg, .jpeg, .png');
-      this.inputFile.nativeElement.value = "";
+    if (ext && !this.extPermitidas.includes(ext)) {
+      showSwalWarning(
+        'Formato de archivo no valido',
+        'Solo se admiten imagenes con formato .jpg, .jpeg, .png'
+      );
+      this.inputFile.nativeElement.value = '';
       return;
     }
 
@@ -156,5 +182,4 @@ export class ModalProductosComponent implements OnInit {
       }
     );
   }
-
 }

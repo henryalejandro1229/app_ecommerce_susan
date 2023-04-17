@@ -28,6 +28,7 @@ export class ResultadosBusquedaComponent implements OnInit {
   min!: number;
   max!: number;
   typeSelectID!: string;
+  categoriaSelect!: string;
   priceError = false;
 
   displayedColumns: string[] = [
@@ -37,6 +38,20 @@ export class ResultadosBusquedaComponent implements OnInit {
     'categoria',
     'marca',
     'precio',
+  ];
+
+  objCategoria = [
+    '120 mL',
+    '210 mL',
+    '500 mL',
+    '600 mL',
+    '700 mL',
+    '750 mL',
+    '900 mL',
+    '1 L',
+    '1.2 L',
+    '1.8 L',
+    '2 L',
   ];
 
   constructor(
@@ -74,6 +89,7 @@ export class ResultadosBusquedaComponent implements OnInit {
     this.min = res['min'];
     this.max = res['max'];
     this.typeSelectID = res['typeID'];
+    this.categoriaSelect = res['category'];
     this.buscar();
   }
 
@@ -87,7 +103,7 @@ export class ResultadosBusquedaComponent implements OnInit {
 
   buscar(): void {
     this.loading = true;
-    this._hs.findProduct(this.txtSearch, this.min, this.max, this.typeSelectID).subscribe(
+    this._hs.findProduct(this.txtSearch, this.min, this.max, this.typeSelectID, this.categoriaSelect).subscribe(
       (res: ProductoModelo[]) => {
         this.objProductos = res;
         this.loading = false;
@@ -107,24 +123,14 @@ export class ResultadosBusquedaComponent implements OnInit {
     return '';
   }
 
-  aplicarFiltroPrecio() {
+  aplicarFiltros() {
     this.router.navigate([], {
       queryParams: {
         search: this.txtSearch,
         min: this.min,
         max: this.max,
         typeID: this.typeSelectID,
-      },
-    });
-  }
-
-  filterType() {
-    this.router.navigate([], {
-      queryParams: {
-        search: this.txtSearch,
-        min: this.min,
-        max: this.max,
-        typeID: this.typeSelectID,
+        category: this.categoriaSelect,
       },
     });
   }

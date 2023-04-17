@@ -20,7 +20,7 @@
                                 <mat-label>Máximo</mat-label>
                                 <input matInput [(ngModel)]="max" min="0" type="number" (change)="validaFiltroPrecio()">
                             </mat-form-field>
-                            <button class="col-2 bg-light" matTooltip="Aplicar" (click)="aplicarFiltroPrecio()" mat-icon-button [disabled]="priceError">
+                            <button class="col-2 bg-light" matTooltip="Aplicar" (click)="aplicarFiltros()" mat-icon-button [disabled]="priceError">
                                 <mat-icon color="accent">search</mat-icon>
                             </button>
                         </div>
@@ -31,12 +31,22 @@
                 </div>
 
                 <h2 class="fw-light pt-3"><b>Filtrar por sabor</b></h2>
-                <mat-radio-group [(ngModel)]="typeSelectID" (change)="filterType()">
+                <mat-radio-group [(ngModel)]="typeSelectID" (change)="aplicarFiltros()">
                     <mat-radio-button class="d-block p-2" [value]="'0'" >
                         Ninguno
                     </mat-radio-button>
                     <mat-radio-button class="d-block p-2" *ngFor="let type of objTypes" [value]="type._id.$oid" >
                         {{type.name}}
+                    </mat-radio-button>
+                </mat-radio-group>
+
+                <h2 class="fw-light pt-3"><b>Filtrar por categoría</b></h2>
+                <mat-radio-group [(ngModel)]="categoriaSelect" (change)="aplicarFiltros()">
+                    <mat-radio-button class="d-block p-2" [value]="'0'" >
+                        Ninguno
+                    </mat-radio-button>
+                    <mat-radio-button class="d-block p-2" *ngFor="let cat of objCategoria" [value]="cat" >
+                        {{cat}}
                     </mat-radio-button>
                 </mat-radio-group>
             </div>
