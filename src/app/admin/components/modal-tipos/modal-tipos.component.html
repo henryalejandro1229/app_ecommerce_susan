@@ -30,6 +30,8 @@
                             <input matInput type="text" placeholder="Nombre de la categoría" formControlName="name" />
                             <mat-error *ngIf="form.controls['name'].errors?.['required']">Campo
                                 requerido</mat-error>
+                            <mat-error *ngIf="form.controls['name'].errors?.['pattern']">El nombre debe
+                                contener solo letras</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="row">

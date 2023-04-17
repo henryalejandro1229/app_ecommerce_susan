@@ -34,7 +34,7 @@ export class ModalTiposComponent implements OnInit {
     }
   ) {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i)]),
       description: new FormControl('', [Validators.required])
     });
   }

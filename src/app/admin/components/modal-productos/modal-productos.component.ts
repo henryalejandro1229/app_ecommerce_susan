@@ -35,10 +35,10 @@ export class ModalProductosComponent implements OnInit {
     }
   ) {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
+      title: new FormControl('', [Validators.required, Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i)]),
       description: new FormControl('', [Validators.required]),
       marca: new FormControl('', [Validators.required]),
-      precio: new FormControl('', [Validators.required, Validators.min(0)]),
+      precio: new FormControl('', [Validators.required, Validators.min(1)]),
       typeID: new FormControl('', [Validators.required]),
     });
   }

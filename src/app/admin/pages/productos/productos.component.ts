@@ -75,6 +75,8 @@ export class ProductosComponent implements OnInit {
       })
       .afterClosed()
       .subscribe((res) => {
+        console.log(res);
+        
         if (res) this.consultaInfo();
       });
   }
