@@ -16,6 +16,8 @@ import { AvisoPrivacidadComponent } from './pages/aviso-privacidad/aviso-privaci
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
+import { MisDireccionesComponent } from './pages/mis-direcciones/mis-direcciones.component';
+import { NuevaDireccionComponent } from './components/nueva-direccion/nueva-direccion.component';
 
 
 
@@ -34,7 +36,9 @@ import { DetalleProductoComponent } from './pages/detalle-producto/detalle-produ
     AvisoPrivacidadComponent,
     PreguntasFrecuentesComponent,
     ResultadosBusquedaComponent,
-    DetalleProductoComponent
+    DetalleProductoComponent,
+    MisDireccionesComponent,
+    NuevaDireccionComponent
   ],
   imports: [
     CommonModule,

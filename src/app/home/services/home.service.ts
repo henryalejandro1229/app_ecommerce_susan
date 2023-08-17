@@ -7,12 +7,15 @@ import {
   ClienteModelo,
   ImagenModelo,
   ProductoModelo,
+  DireccionModelo,
 } from '../models/home.modelo';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeService {
+
+  private tokenCOPOMEX = "pruebas";
   constructor(private readonly http: HttpClient) {}
 
   getUsuarios(): Observable<any> {
@@ -193,5 +196,52 @@ export class HomeService {
       `${environment.url}/products/uploadImage.php`,
       archivo
     );
+  }
+
+  getDirecciones(clienteID: string): Observable<any> {
+    return this.http.get(
+      `${environment.url}/profile/getDirecciones.php?clienteID=${clienteID}`
+    );
+  }
+
+  createdireccion(formData: DireccionModelo): Observable<any> {
+    let params = new HttpParams()
+      .append('clienteID', formData.clienteID)
+      .append('nombre', formData.nombre)
+      .append('estado', formData.estado)
+      .append('municipio', formData.municipio)
+      .append('colonia', formData.colonia)
+      .append('calle', formData.calle)
+      .append('telefono', formData.telefono)
+      .append('indicaciones', formData.indicaciones);
+    return this.http.get(`${environment.url}/profile/createDireccion.php`, {
+      params,
+    });
+  }
+
+  updateDireccion(id: string, formData: DireccionModelo): Observable<any> {
+    let params = new HttpParams()
+      .append('id', id)
+      .append('clienteID', formData.clienteID)
+      .append('nombre', formData.nombre)
+      .append('estado', formData.estado)
+      .append('municipio', formData.municipio)
+      .append('colonia', formData.colonia)
+      .append('calle', formData.calle)
+      .append('telefono', formData.telefono)
+      .append('indicaciones', formData.indicaciones);
+    return this.http.get(`${environment.url}/profile/updateDireccion.php`, {
+      params,
+    });
+  }
+
+  deleteDireccion(id: string): Observable<any> {
+    return this.http.get(
+      `${environment.url}/profile/deleteDireccion.php?id=${id}`
+    );
+  }
+
+  getMunicipios(estado: string): Observable<any> {
+    return this.http.get(`${environment.urlCOPOMEX}/get_municipio_por_estado/${estado}?token=${this.tokenCOPOMEX}`);
   }
 }

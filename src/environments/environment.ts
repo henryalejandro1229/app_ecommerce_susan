@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   url: `saborlicor_app_backend/api`,
+  urlCOPOMEX: `https://api.copomex.com/query/`,
   urlImg: `http://localhost/saborlicor_app_backend/api/products/imageProducts/`,
   urlEmail: `https://appsaborlicorserveremail-production.up.railway.app/saborlicor_app_backend/`,
 };

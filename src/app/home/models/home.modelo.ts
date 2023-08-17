@@ -29,3 +29,15 @@ export interface ImagenModelo {
   nombreArchivo: string;
   base64textString: string;
 }
+
+export interface DireccionModelo {
+  _id: any;
+  clienteID: string;
+  nombre: string;
+  estado: string;
+  municipio: string;
+  colonia: string;
+  calle: string;
+  telefono: string;
+  indicaciones: string;
+}

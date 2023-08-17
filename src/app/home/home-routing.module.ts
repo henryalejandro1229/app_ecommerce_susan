@@ -14,6 +14,7 @@ import { AvisoPrivacidadComponent } from './pages/aviso-privacidad/aviso-privaci
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
+import { MisDireccionesComponent } from './pages/mis-direcciones/mis-direcciones.component';
 
 const routes: Routes = [
   {
@@ -55,9 +56,9 @@ const routes: Routes = [
         component: ListProductsComponent,
       },
       {
-        path: 'mis-compras',
-        data: { breadcrumb: 'Mis compras' },
-        component: MisComprasComponent,
+        path: 'mis-direcciones',
+        data: { breadcrumb: 'Mis direcciones' },
+        component: MisDireccionesComponent,
       },
       {
         path: 'mision-vision',

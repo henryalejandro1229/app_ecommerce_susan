@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   public isAuth = false;
   public isAdmin = false;
+  public token = '';
 
   constructor() {
     this.getSesion();
@@ -38,7 +39,12 @@ export class AuthService {
 
   getSesion() {
     let token = this.getTokenLocalStorage();
-    this.isAuth = token? token.length > 0 : false;
+    if(token) {
+      this.isAuth = true;
+      this.token = token;
+    }
+    else 
+      this.isAuth = false;
     this.isAdmin = this.getIsAdminLocalStorage() === 'true';
   }
 }
