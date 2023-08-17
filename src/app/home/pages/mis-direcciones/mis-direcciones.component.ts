@@ -48,7 +48,6 @@ export class MisDireccionesComponent implements OnInit {
       (res: any) => {
         this.loading = false;
         this.estados = res.response.estado;
-        console.log(this.estados)
       },
       (e) => {
         showNotifyError('Error consultar los estados');

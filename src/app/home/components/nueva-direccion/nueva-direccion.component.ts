@@ -40,14 +40,8 @@ export class NuevaDireccionComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i),
       ]),
-      estado: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i),
-      ]),
-      municipio: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-z\s\u00E0-\u00FC\u00f1]*$/i),
-      ]),
+      estado: new FormControl('', [Validators.required]),
+      municipio: new FormControl('', [Validators.required]),
       colonia: new FormControl('', [Validators.required]),
       calle: new FormControl('', [Validators.required]),
       telefono: new FormControl('', [Validators.required]),
@@ -58,8 +52,8 @@ export class NuevaDireccionComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.direccion) {
       this.id = this.data.direccion._id.$oid;
-      this.selectEstado(this.data.direccion.estado);
-      this.selectMunicipio(this.data.direccion.municipio);
+      this.getMunicipios(this.data.direccion.estado);
+      this.getColonias(this.data.direccion.municipio);
       this.form.controls['nombre'].setValue(this.data.direccion.nombre);
       this.form.controls['estado'].setValue(this.data.direccion.estado);
       this.form.controls['municipio'].setValue(this.data.direccion.municipio);
@@ -69,19 +63,31 @@ export class NuevaDireccionComponent implements OnInit {
       this.form.controls['indicaciones'].setValue(
         this.data.direccion.indicaciones
       );
-    }    
+    }
+  }
+
+  private getMunicipios(edo: string) {
+    this._hs.getMunicipios(edo).subscribe((res) => {
+      this.municipios = res.response.municipios;
+    });
+  }
+
+  private getColonias(mpio: string) {
+    this._hs.getColonias(mpio).subscribe((res) => {
+      this.colonias = res.response.colonia;
+    });
   }
 
   selectEstado(edo: string) {
-    this._hs.getMunicipios(edo).subscribe(res => {
-      this.municipios = res.response.municipios;   
-    })
+    this.getMunicipios(edo);
+    this.form.controls['municipio'].setValue('');
+    this.form.controls['colonia'].setValue('');
+    this.colonias = [];
   }
 
   selectMunicipio(mpio: string) {
-    this._hs.getColonias(mpio).subscribe(res => {
-      this.colonias = res.response.colonia;   
-    })
+    this.getColonias(mpio);
+    this.form.controls['colonia'].setValue('');
   }
 
   submit() {
