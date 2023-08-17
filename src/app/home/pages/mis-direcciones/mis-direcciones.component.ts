@@ -3,27 +3,33 @@ import { DireccionModelo } from '../../models/home.modelo';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeService } from '../../services/home.service';
-import { showModalConfirmation, showNotifyError, showNotifySuccess } from 'src/app/shared/functions/Utilities';
+import {
+  showModalConfirmation,
+  showNotifyError,
+  showNotifySuccess,
+} from 'src/app/shared/functions/Utilities';
 import { NuevaDireccionComponent } from '../../components/nueva-direccion/nueva-direccion.component';
 
 @Component({
   selector: 'app-mis-direcciones',
   templateUrl: './mis-direcciones.component.html',
-  styleUrls: ['./mis-direcciones.component.scss']
+  styleUrls: ['./mis-direcciones.component.scss'],
 })
 export class MisDireccionesComponent implements OnInit {
-
   direcciones: DireccionModelo[] = [];
+  loading = true;
+  estados: string[] = [];
 
   constructor(
     private _hs: HomeService,
     private matDialog: MatDialog,
-    private _auth: AuthService,
-    ) { }
-
-  ngOnInit(): void {
+    private _auth: AuthService
+  ) {
+    this.getEstados();
     this.getDirecciones();
   }
+
+  ngOnInit(): void {}
 
   getDirecciones() {
     this._hs.getDirecciones(this._auth.token).subscribe(
@@ -32,6 +38,20 @@ export class MisDireccionesComponent implements OnInit {
       },
       (e) => {
         showNotifyError('Error consultar las direcciones');
+      }
+    );
+  }
+
+  private getEstados() {
+    this.loading = true;
+    this._hs.getEdos().subscribe(
+      (res: any) => {
+        this.loading = false;
+        this.estados = res.response.estado;
+        console.log(this.estados)
+      },
+      (e) => {
+        showNotifyError('Error consultar los estados');
       }
     );
   }
@@ -45,6 +65,7 @@ export class MisDireccionesComponent implements OnInit {
         data: {
           isNew,
           direccion,
+          estados: this.estados
         },
       })
       .afterClosed()
@@ -61,9 +82,7 @@ export class MisDireccionesComponent implements OnInit {
       if (res.isConfirmed) {
         this._hs.deleteDireccion(direccion._id.$oid).subscribe(
           (res: any) => {
-            showNotifySuccess(
-              'Dirección eliminada correctamente'
-            );
+            showNotifySuccess('Dirección eliminada correctamente');
             this.getDirecciones();
           },
           (e) => {
@@ -73,5 +92,4 @@ export class MisDireccionesComponent implements OnInit {
       }
     });
   }
-
 }

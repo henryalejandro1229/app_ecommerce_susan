@@ -241,7 +241,19 @@ export class HomeService {
     );
   }
 
+  getColonias(mpio: string): Observable<any> {
+    return this.http.get(`${environment.urlCOPOMEX}/get_colonia_por_municipio/${mpio}?token=${this.tokenCOPOMEX}`);
+  }
+
   getMunicipios(estado: string): Observable<any> {
     return this.http.get(`${environment.urlCOPOMEX}/get_municipio_por_estado/${estado}?token=${this.tokenCOPOMEX}`);
+  }
+
+  getEdoPorCP(CP: string): Observable<any> {
+    return this.http.get(`${environment.urlCOPOMEX}/info_cp/${CP}?token=${this.tokenCOPOMEX}`);
+  }
+
+  getEdos(): Observable<any> {
+    return this.http.get(`${environment.urlCOPOMEX}/get_estados?token=${this.tokenCOPOMEX}`);
   }
 }

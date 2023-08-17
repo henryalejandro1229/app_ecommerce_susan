@@ -1,5 +1,10 @@
 <div class="container py-4">
     <h3>Mis domicilios</h3>
+    <div *ngIf="loading" class="d-flex justify-content-center py-5">
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+    </div>
     <mat-card class="my-3 bg-light" *ngIf="!direcciones || direcciones.length === 0">
         <div class="d-flex justify-content-center">
             <img src="../../../../assets/resources/no-directions.png" height="400px">
