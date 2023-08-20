@@ -32,6 +32,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  loginWithGoogle() {
+    this._auth
+      .loginWithGoogle()
+      .then((res) => {
+        showNotifySuccess('Bienvenido');
+        // this.router.navigate(['/dashboard']);
+        console.log('Inicio de sesión exitoso con Google', res.user);
+      })
+      .catch((e) => showNotifyError(e.message));
+  }
+
   login() {
     if (this.form.valid) {
       this._hs.login(this.form.value.email, this.form.value.password).subscribe(

@@ -1,4 +1,12 @@
 import { Injectable } from '@angular/core';
+import {
+  Auth,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +16,7 @@ export class AuthService {
   public isAdmin = false;
   public token = '';
 
-  constructor() {
+  constructor(private auth: Auth) {
     this.getSesion();
   }
 
@@ -46,5 +54,13 @@ export class AuthService {
     else 
       this.isAuth = false;
     this.isAdmin = this.getIsAdminLocalStorage() === 'true';
+  }
+
+  loginWithGoogle() {
+    return signInWithPopup(this.auth, new GoogleAuthProvider());
+  }
+
+  logoutFirebase() {
+    return signOut(this.auth);
   }
 }

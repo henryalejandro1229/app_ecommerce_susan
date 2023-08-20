@@ -15,7 +15,7 @@ import {
 })
 export class HomeService {
 
-  private tokenCOPOMEX = "pruebas";
+  private tokenCOPOMEX = "ebfae518-e174-49fc-8954-f9c6c02774dd";
   constructor(private readonly http: HttpClient) {}
 
   getUsuarios(): Observable<any> {
