@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   loginWithGoogle() {
     this._auth
-      .loginWithGoogle()
+      .loginWithGoogleAuth()
       .then((res) => {
         this._hs.validateEmail(res.user.email || '').subscribe(
           (response: any[]) => {

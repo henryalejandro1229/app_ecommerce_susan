@@ -56,7 +56,7 @@ export class AuthService {
     this.isAdmin = this.getIsAdminLocalStorage() === 'true';
   }
 
-  loginWithGoogle() {
+  loginWithGoogleAuth() {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
