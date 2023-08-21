@@ -41,7 +41,7 @@ export class ForgotPwdComponent implements OnInit {
         }
       },
       (e) => {
-        showNotifyError('Error al validar el email');
+        showNotifyError('Error al validar correo electrónico');
       }
     );
   }

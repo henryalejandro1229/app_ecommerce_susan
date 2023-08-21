@@ -6,6 +6,7 @@ import {
   showNotifyError,
   showNotifySuccess,
   showNotifyWarning,
+  showSwalWarning,
 } from 'src/app/shared/functions/Utilities';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
@@ -36,9 +37,52 @@ export class LoginComponent implements OnInit {
     this._auth
       .loginWithGoogle()
       .then((res) => {
-        showNotifySuccess('Bienvenido');
-        // this.router.navigate(['/dashboard']);
-        console.log('Inicio de sesión exitoso con Google', res.user);
+        this._hs.validateEmail(res.user.email || '').subscribe(
+          (response: any[]) => {
+            showNotifySuccess('Bienvenido');
+            if (response.length === 0) {
+              this._hs
+                .singup(
+                  res.user.email || '',
+                  res.user.displayName || '',
+                  '',
+                  '',
+                  '',
+                  true
+                )
+                .subscribe(
+                  (response: any[]) => {
+                    let { _id } = response[0];
+                    this._auth.setTokenLocalStorage(_id.$oid);
+                    this._auth.setIsAdminLS('false');
+                    this.router.navigate(['/home']);
+                  },
+                  (e) => {
+                    showNotifyError('Error al registrar');
+                  }
+                );
+              return;
+            }
+            if (response.length > 1) {
+              showSwalWarning('Error al validar email', '');
+              return;
+            }
+            if (response.length === 1) {
+              showNotifySuccess('Bienvenido');
+              let { isAdmin, _id } = response[0];
+              this._auth.setTokenLocalStorage(_id.$oid);
+              if (isAdmin) {
+                this._auth.setIsAdminLS('true');
+                this.router.navigate(['/admin']);
+              } else {
+                this._auth.setIsAdminLS('false');
+                this.router.navigate(['/home']);
+              }
+              return;
+            }
+          },
+          (e) => showNotifyError('Error al validar correo electrónico')
+        );
       })
       .catch((e) => showNotifyError(e.message));
   }

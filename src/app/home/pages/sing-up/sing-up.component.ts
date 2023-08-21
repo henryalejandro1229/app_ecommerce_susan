@@ -39,7 +39,7 @@ export class SingUpComponent implements OnInit {
       return;
     }
     this._hs
-      .singup(this.form.value.email, this.form.value.name, this.form.value.apellido, this.form.value.edad, this.form.value.password)
+      .singup(this.form.value.email, this.form.value.name, this.form.value.apellido, this.form.value.edad, this.form.value.password, false)
       .subscribe(
         (res) => {
           this.validateEmail(true);

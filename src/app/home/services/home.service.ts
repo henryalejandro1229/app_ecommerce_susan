@@ -64,8 +64,8 @@ export class HomeService {
     return this.http.get(url);
   }
 
-  singup(email: string, name: string, apellido: string, edad: string, password: string): Observable<any> {
-    const url = `${environment.url}/users/singup.php?name=${name}&password=${password}&email=${email}&apellido=${apellido}&edad=${edad}`;
+  singup(email: string, name: string, apellido: string, edad: string, password: string, sessionGoogle: boolean): Observable<any> {
+    const url = `${environment.url}/users/singup.php?name=${name}&password=${password}&email=${email}&apellido=${apellido}&edad=${edad}&sessionGoogle=${sessionGoogle}`;
     return this.http.get(url);
   }
 
